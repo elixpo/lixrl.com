@@ -339,16 +339,28 @@ export default function PricingPage() {
                 ))}
               </div>
 
-              <a
-                href="mailto:hello@elixpo.com?subject=ElixpoURL%20Enterprise"
-                className="mt-1 inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-[12px] font-semibold text-sm text-white no-underline transition-all"
-                style={{
-                  background: 'linear-gradient(135deg, #e53935 0%, #c62828 100%)',
-                  boxShadow: '0 8px 24px rgba(229,57,53,0.35)',
-                }}
-              >
-                Contact team
-              </a>
+              <div className="flex flex-col sm:flex-row gap-3 mt-4">
+                <a
+                  href="mailto:hello@elixpo.com?subject=ElixpoURL%20Enterprise"
+                  className="mt-1 inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-[12px] font-semibold text-sm text-white no-underline transition-all"
+                  style={{
+                    background: 'linear-gradient(135deg, #e53935 0%, #c62828 100%)',
+                    boxShadow: '0 8px 24px rgba(229,57,53,0.35)',
+                  }}
+                >
+                  Contact team
+                </a>
+                <button
+                  onClick={() => {\n                    navigator.clipboard.writeText('hello@elixpo.com');\n                  }}
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-[12px] text-sm font-medium text-white/85 transition-all border border-white/20 hover:bg-white/10"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  hello@elixpo.com
+                </button>
+              </div>
             </div>
           </div>
         </section>
