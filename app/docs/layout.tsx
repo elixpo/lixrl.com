@@ -91,7 +91,14 @@ export default function DocsLayout({
           if (text) lines.push(text, '');
           return;
         default:
-          el.childNodes.forEach(walk);
+          // Documentation uses styled divs and inline elements for endpoint
+          // paths, callouts, and metadata. Preserve their leaf text so the
+          // LLM payload contains the complete rendered documentation.
+          if (el.children.length === 0) {
+            if (text) lines.push(text, '');
+          } else {
+            el.childNodes.forEach(walk);
+          }
       }
     };
     root.childNodes.forEach(walk);
