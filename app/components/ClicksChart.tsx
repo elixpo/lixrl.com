@@ -12,6 +12,8 @@ interface Props {
   height?: number;    // SVG viewBox height (default 200)
   /** Hide x-axis date labels (used by the sparkline variant) */
   compact?: boolean;
+  /** Theme for the chart - 'dark' or 'light' */
+  theme?: 'dark' | 'light';
 }
 
 const PAD_L = 40;   // left padding for y-axis labels
@@ -26,7 +28,7 @@ const ACCENT_DEEP = '#c62828';
  * React state. Pure presentational — caller decides the date range
  * and supplies a continuous (no-gap) array of points.
  */
-export default function ClicksChart({ data, height = 200, compact = false }: Props) {
+export default function ClicksChart({ data, height = 200, compact = false, theme = 'dark' }: Props) {
   const [hover, setHover] = useState<number | null>(null);
   // Compute viewBox width based on data length so wide ranges still
   // render legibly without bars getting too thin.
