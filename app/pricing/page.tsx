@@ -27,7 +27,7 @@ const COMPARISON_ROWS: { label: string; values: Record<SellableTier, string> }[]
   { label: 'Analytics', values: { free: 'Click totals · 7 days', pro: 'Geo, device & CSV · 30 days', business: 'Geo, device & CSV · 1 year' } },
   { label: 'Custom slugs', values: { free: '—', pro: 'Included', business: 'Included' } },
   { label: 'Branded lixrl.com subdomains', values: { free: '—', pro: '1', business: '3' } },
-  { label: 'API keys', values: { free: '1', pro: '5', business: '20' } },
+  { label: 'API keys', values: { free: '2 · API + CLI', pro: '5', business: '20' } },
   { label: 'Expiring links', values: { free: '—', pro: 'Included', business: 'Included' } },
   { label: 'Quick QR generation', values: { free: 'Unlimited', pro: 'Unlimited', business: 'Unlimited' } },
   { label: 'QR export formats', values: { free: 'SVG, PNG & JPG', pro: 'SVG, PNG & JPG', business: 'SVG, PNG & JPG' } },
