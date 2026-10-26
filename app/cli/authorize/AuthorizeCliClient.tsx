@@ -46,14 +46,14 @@ export default function AuthorizeCliClient({ requestId, defaultName, activeKeys,
 
   if (status === 'approved' || status === 'denied') {
     return (
-      <div className="rounded-2xl border border-[#e5e5e5] bg-white p-8 text-center shadow-[0_22px_70px_rgba(0,0,0,0.08)]">
-        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#e53935]/10 text-2xl text-[#c62828]">
+      <div className="rounded-[1.4rem] border border-[#d7dbd6] bg-white p-8 text-center shadow-[0_22px_70px_rgba(20,32,24,0.08)]">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#3a65c7]/10 text-2xl text-[#2f56b0]">
           {status === 'approved' ? '✓' : '×'}
         </div>
-        <h1 className="text-2xl font-black tracking-tight text-[#111]">
+        <h1 className="app-title !text-[clamp(1.6rem,4vw,2.2rem)]">
           {status === 'approved' ? 'CLI access approved' : 'CLI access denied'}
         </h1>
-        <p className="mt-3 text-sm leading-6 text-[#666]">
+        <p className="mt-3 text-sm leading-6 text-[#5f6962]">
           {status === 'approved'
             ? 'Return to your terminal. Lixrl will deliver the new key directly to the waiting CLI and store only its hash.'
             : 'No API key was created. You can close this window.'}
@@ -63,29 +63,29 @@ export default function AuthorizeCliClient({ requestId, defaultName, activeKeys,
   }
 
   return (
-    <form onSubmit={approve} className="rounded-2xl border border-[#e5e5e5] bg-white p-6 shadow-[0_22px_70px_rgba(0,0,0,0.08)] sm:p-8">
-      <div className="mb-5 inline-flex rounded-full border border-[#f2c6c4] bg-[#fff7f6] px-3 py-1 text-xs font-bold uppercase tracking-[0.08em] text-[#c62828]">
+    <form onSubmit={approve} className="rounded-[1.4rem] border border-[#d7dbd6] bg-white p-6 shadow-[0_22px_70px_rgba(20,32,24,0.08)] sm:p-8">
+      <div className="mb-5 inline-flex rounded-full border border-[#c9d6f5] bg-[#eef2ff] px-3 py-1 eyebrow">
         Developer CLI
       </div>
-      <h1 className="text-3xl font-black tracking-[-0.035em] text-[#111]">Create a key for this CLI</h1>
-      <p className="mt-3 text-sm leading-6 text-[#666]">
+      <h1 className="app-title">Create a key for this CLI</h1>
+      <p className="mt-3 text-sm leading-6 text-[#5f6962]">
         Choose exactly what this device can do. The key goes directly to the waiting CLI and is saved in your OS keychain.
       </p>
 
       <div className="mt-7">
-        <label htmlFor="cli-key-name" className="mb-2 block text-sm font-bold text-[#222]">Key name</label>
+        <label htmlFor="cli-key-name" className="mb-2 block text-sm font-bold text-[#1d2b22]">Key name</label>
         <input
           id="cli-key-name"
           value={name}
           onChange={(event) => setName(event.target.value)}
           maxLength={64}
           required
-          className="w-full rounded-xl border border-[#d8d8d8] bg-white px-4 py-3 text-sm text-[#111] outline-none focus:border-[#e53935]"
+          className="w-full rounded-xl border border-[#d7dbd6] bg-white px-4 py-3 text-sm text-[#142018] outline-none focus:border-[#3a65c7]"
         />
       </div>
 
       <fieldset className="mt-6">
-        <legend className="mb-2 text-sm font-bold text-[#222]">Access</legend>
+        <legend className="mb-2 text-sm font-bold text-[#1d2b22]">Access</legend>
         <div className="grid gap-3 sm:grid-cols-2">
           {[
             ['read,write', 'Read and write', 'Create, update, disable, and inspect links.'],
@@ -97,31 +97,31 @@ export default function AuthorizeCliClient({ requestId, defaultName, activeKeys,
               onClick={() => setScopes(value)}
               className="rounded-xl p-4 text-left transition-colors"
               style={{
-                border: scopes === value ? '1.5px solid #e53935' : '1px solid #dedede',
-                background: scopes === value ? '#fff7f6' : '#fff',
+                border: scopes === value ? '1.5px solid #3a65c7' : '1px solid #d7dbd6',
+                background: scopes === value ? '#eef2ff' : '#fff',
               }}
             >
-              <span className="block text-sm font-bold text-[#222]">{label}</span>
-              <span className="mt-1 block text-xs leading-5 text-[#777]">{description}</span>
+              <span className="block text-sm font-bold text-[#1d2b22]">{label}</span>
+              <span className="mt-1 block text-xs leading-5 text-[#5f6962]">{description}</span>
             </button>
           ))}
         </div>
       </fieldset>
 
       <div className="mt-6">
-        <label htmlFor="cli-key-expiry" className="mb-2 block text-sm font-bold text-[#222]">Expiry date <span className="font-normal text-[#888]">(optional)</span></label>
+        <label htmlFor="cli-key-expiry" className="mb-2 block text-sm font-bold text-[#1d2b22]">Expiry date <span className="font-normal text-[#68716b]">(optional)</span></label>
         <input
           id="cli-key-expiry"
           type="date"
           value={expires}
           min={new Date(Date.now() + 86_400_000).toISOString().slice(0, 10)}
           onChange={(event) => setExpires(event.target.value)}
-          className="w-full rounded-xl border border-[#d8d8d8] bg-white px-4 py-3 text-sm text-[#111] outline-none focus:border-[#e53935]"
+          className="w-full rounded-xl border border-[#d7dbd6] bg-white px-4 py-3 text-sm text-[#142018] outline-none focus:border-[#3a65c7]"
         />
       </div>
 
-      <div className="mt-6 rounded-xl bg-[#f7f7f7] px-4 py-3 text-xs leading-5 text-[#666]">
-        Active API keys: <strong className="text-[#222]">{activeKeys} of {maxKeys}</strong>. Creating this key uses one slot. Your plan&apos;s request-rate ceiling still applies.
+      <div className="mt-6 rounded-xl bg-[#f5f6f2] px-4 py-3 text-xs leading-5 text-[#5f6962]">
+        Active API keys: <strong className="text-[#1d2b22]">{activeKeys} of {maxKeys}</strong>. Creating this key uses one slot. Your plan&apos;s request-rate ceiling still applies.
       </div>
 
       {error && <p className="mt-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
@@ -131,14 +131,14 @@ export default function AuthorizeCliClient({ requestId, defaultName, activeKeys,
           type="button"
           onClick={deny}
           disabled={status === 'saving'}
-          className="rounded-xl border border-[#d8d8d8] px-5 py-3 text-sm font-bold text-[#444]"
+          className="rounded-xl border border-[#d7dbd6] px-5 py-3 text-sm font-bold text-[#3d4842]"
         >
           Deny
         </button>
         <button
           type="submit"
           disabled={status === 'saving' || !name.trim()}
-          className="rounded-xl bg-[#e53935] px-5 py-3 text-sm font-bold text-white shadow-[0_8px_24px_rgba(229,57,53,0.24)] disabled:opacity-60"
+          className="rounded-xl bg-[#3a65c7] px-5 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgba(20,32,24,0.14)] disabled:opacity-60"
         >
           {status === 'saving' ? 'Approving…' : 'Create key and approve'}
         </button>

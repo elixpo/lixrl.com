@@ -127,21 +127,22 @@ export default function ShortenPage() {
   const slugHelper = (() => {
     switch (slugStatus.state) {
       case 'checking':
-        return { text: 'Checking availability…', color: 'rgba(0,0,0,0.45)' };
+        return { text: 'Checking availability…', color: 'rgba(20,32,24,0.45)' };
       case 'available':
-        return { text: '✓ Available', color: '#86efac' };
+        return { text: '✓ Available', color: '#0b623c' };
       case 'taken':
-        return { text: `✗ ${slugStatus.reason}`, color: '#f87171' };
+        return { text: `✗ ${slugStatus.reason}`, color: '#b42318' };
       default:
         return {
           text: '3–32 chars. Letters, numbers, dash, underscore.',
-          color: 'rgba(0,0,0,0.4)',
+          color: 'rgba(20,32,24,0.4)',
         };
     }
   })();
 
   return (
     <>
+      <h1 className="sr-only">Shorten a URL</h1>
       {/* Shorten URL modal — open while on this route, close → /dashboard. */}
       <Modal
         open={!result}
@@ -160,7 +161,7 @@ export default function ShortenPage() {
           <div className="mb-4">
             <label
               htmlFor="dest-url"
-              className="block text-[0.7rem] text-[#555] mb-1.5 uppercase tracking-wider font-medium"
+              className="block text-[0.7rem] text-[#5f6962] mb-1.5 uppercase tracking-wider font-medium"
             >
               Destination URL
             </label>
@@ -172,21 +173,21 @@ export default function ShortenPage() {
               placeholder="https://example.com/your-long-url"
               required
               autoFocus
-              className="w-full px-3 py-2.5 rounded-lg text-sm outline-none text-[#111] placeholder:text-[#999] transition-colors"
+              className="w-full px-3 py-2.5 rounded-lg text-sm outline-none text-[#142018] placeholder:text-[#737b75] transition-colors"
               style={{
                 background: '#ffffff',
-                border: '1px solid #d8d8d8',
+                border: '1px solid #d7dbd6',
               }}
-              onFocus={(e) => (e.currentTarget.style.borderColor = '#e53935')}
+              onFocus={(e) => (e.currentTarget.style.borderColor = '#3a65c7')}
               onBlur={(e) =>
                 (e.currentTarget.style.borderColor =
-                  '#d8d8d8')
+                  '#d7dbd6')
               }
             />
           </div>
 
           <details className="mb-4 rounded-lg border border-black/10 p-3">
-            <summary className="cursor-pointer text-sm font-semibold text-[#333]">Campaign and UTM options</summary>
+            <summary className="cursor-pointer text-sm font-semibold text-[#2b3830]">Campaign and UTM options</summary>
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <CampaignField label="Campaign label" value={campaign} onChange={setCampaign} placeholder="Q3 launch" />
               <CampaignField label="Tags (comma-separated)" value={tags} onChange={setTags} placeholder="social, launch" />
@@ -201,10 +202,10 @@ export default function ShortenPage() {
             <div className="mb-4">
               <label
                 htmlFor="slug"
-                className="block text-[0.7rem] text-[#555] mb-1.5 uppercase tracking-wider font-medium"
+                className="block text-[0.7rem] text-[#5f6962] mb-1.5 uppercase tracking-wider font-medium"
               >
                 Custom slug{' '}
-                <span className="text-[#888] normal-case font-normal">
+                <span className="text-[#68716b] normal-case font-normal">
                   (optional)
                 </span>
               </label>
@@ -215,7 +216,7 @@ export default function ShortenPage() {
                   value={customCode}
                   onChange={(e) => setCustomCode(e.target.value)}
                   placeholder="e.g. launch, blog-q1"
-                  className="w-full px-3 py-2.5 pr-9 rounded-lg text-sm outline-none text-[#111] placeholder:text-[#999] transition-colors font-mono"
+                  className="w-full px-3 py-2.5 pr-9 rounded-lg text-sm outline-none text-[#142018] placeholder:text-[#737b75] transition-colors font-mono"
                   style={{
                     background: '#ffffff',
                     border: `1px solid ${
@@ -223,18 +224,18 @@ export default function ShortenPage() {
                         ? 'rgba(239,68,68,0.45)'
                         : slugStatus.state === 'available'
                         ? 'rgba(134,239,172,0.45)'
-                        : '#d8d8d8'
+                        : '#d7dbd6'
                     }`,
                   }}
                   onFocus={(e) => {
                     if (slugStatus.state === 'idle' || slugStatus.state === 'checking') {
-                      e.currentTarget.style.borderColor = '#e53935';
+                      e.currentTarget.style.borderColor = '#3a65c7';
                     }
                   }}
                   onBlur={(e) => {
                     if (slugStatus.state === 'idle' || slugStatus.state === 'checking') {
                       e.currentTarget.style.borderColor =
-                        '#d8d8d8';
+                        '#d7dbd6';
                     }
                   }}
                 />
@@ -242,7 +243,7 @@ export default function ShortenPage() {
                   <span
                     className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full border-2"
                     style={{
-                      borderColor: 'rgba(229,57,53,0.6)',
+                      borderColor: 'rgba(58,101,199,0.6)',
                       borderTopColor: 'transparent',
                       animation: 'spin 0.6s linear infinite',
                     }}
@@ -263,10 +264,10 @@ export default function ShortenPage() {
             <div className="mb-5">
               <label
                 htmlFor="expires"
-                className="block text-[0.7rem] text-[#555] mb-1.5 uppercase tracking-wider font-medium"
+                className="block text-[0.7rem] text-[#5f6962] mb-1.5 uppercase tracking-wider font-medium"
               >
                 Expires{' '}
-                <span className="text-[#888] normal-case font-normal">
+                <span className="text-[#68716b] normal-case font-normal">
                   (optional)
                 </span>
               </label>
@@ -275,18 +276,18 @@ export default function ShortenPage() {
                 type="datetime-local"
                 value={expiresAt}
                 onChange={(e) => setExpiresAt(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-lg text-sm outline-none text-[#111] transition-colors"
+                className="w-full px-3 py-2.5 rounded-lg text-sm outline-none text-[#142018] transition-colors"
                 style={{
                   background: '#ffffff',
-                  border: '1px solid #d8d8d8',
+                  border: '1px solid #d7dbd6',
                   colorScheme: 'light',
                 }}
                 onFocus={(e) =>
-                  (e.currentTarget.style.borderColor = '#e53935')
+                  (e.currentTarget.style.borderColor = '#3a65c7')
                 }
                 onBlur={(e) =>
                   (e.currentTarget.style.borderColor =
-                    '#d8d8d8')
+                    '#d7dbd6')
                 }
               />
             </div>
@@ -297,12 +298,12 @@ export default function ShortenPage() {
             <div
               className="mb-5 p-3 rounded-lg text-[0.78rem] leading-relaxed"
               style={{
-                background: 'rgba(229,57,53,0.06)',
-                border: '1px solid rgba(229,57,53,0.18)',
-                color: 'rgba(0,0,0,0.65)',
+                background: 'rgba(58,101,199,0.06)',
+                border: '1px solid rgba(58,101,199,0.18)',
+                color: 'rgba(20,32,24,0.65)',
               }}
             >
-              <span className="font-semibold text-[#e85a57]">Free plan</span> —
+              <span className="font-semibold text-[#5b82d8]">Free plan</span> —
               auto-generated codes, no expiration. Upgrade for custom slugs and
               expirations.
             </div>
@@ -314,7 +315,7 @@ export default function ShortenPage() {
               style={{
                 background: 'rgba(239,68,68,0.08)',
                 border: '1px solid rgba(239,68,68,0.25)',
-                color: '#f87171',
+                color: '#b42318',
               }}
             >
               {error}
@@ -326,10 +327,10 @@ export default function ShortenPage() {
               type="button"
               onClick={closeAndGoBack}
               disabled={loading}
-              className="px-4 py-2 rounded-lg text-sm font-medium text-[#444] transition-colors"
+              className="px-4 py-2 rounded-lg text-sm font-medium text-[#3d4842] transition-colors"
               style={{
-                background: 'rgba(0,0,0,0.05)',
-                border: '1px solid rgba(0,0,0,0.12)',
+                background: 'rgba(20,32,24,0.05)',
+                border: '1px solid rgba(20,32,24,0.12)',
               }}
             >
               Cancel
@@ -344,8 +345,8 @@ export default function ShortenPage() {
               className="px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all"
               style={{
                 background:
-                  'linear-gradient(135deg, #e53935 0%, #c62828 100%)',
-                boxShadow: '0 4px 14px rgba(229,57,53,0.4)',
+                  '#142018',
+                boxShadow: 'none',
                 opacity:
                   loading || !url || (isPro && slugStatus.state === 'taken')
                     ? 0.6
@@ -369,9 +370,9 @@ export default function ShortenPage() {
         <div
           className="p-4 rounded-xl mb-4 font-mono text-sm break-all"
           style={{
-            background: '#f6f6f6',
-            border: '1px solid #d8d8d8',
-            color: '#333333',
+            background: '#f5f6f2',
+            border: '1px solid #d7dbd6',
+            color: '#2b3830',
           }}
         >
           {result?.short_url}
@@ -380,10 +381,10 @@ export default function ShortenPage() {
           <button
             type="button"
             onClick={handleCopy}
-            className="px-4 py-2 rounded-lg text-sm font-medium text-[#444] transition-colors inline-flex items-center gap-2"
+            className="px-4 py-2 rounded-lg text-sm font-medium text-[#3d4842] transition-colors inline-flex items-center gap-2"
             style={{
-              background: 'rgba(0,0,0,0.05)',
-              border: '1px solid rgba(0,0,0,0.12)',
+              background: 'rgba(20,32,24,0.05)',
+              border: '1px solid rgba(20,32,24,0.12)',
             }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -397,10 +398,10 @@ export default function ShortenPage() {
             onClick={() => {
               setResult(null);
             }}
-            className="px-4 py-2 rounded-lg text-sm font-medium text-[#444] transition-colors"
+            className="px-4 py-2 rounded-lg text-sm font-medium text-[#3d4842] transition-colors"
             style={{
-              background: 'rgba(0,0,0,0.05)',
-              border: '1px solid rgba(0,0,0,0.12)',
+              background: 'rgba(20,32,24,0.05)',
+              border: '1px solid rgba(20,32,24,0.12)',
             }}
           >
             Shorten another
@@ -411,8 +412,8 @@ export default function ShortenPage() {
             className="px-4 py-2 rounded-lg text-sm font-semibold text-white"
             style={{
               background:
-                'linear-gradient(135deg, #e53935 0%, #c62828 100%)',
-              boxShadow: '0 4px 14px rgba(229,57,53,0.4)',
+                '#142018',
+              boxShadow: 'none',
             }}
           >
             Done
@@ -425,9 +426,9 @@ export default function ShortenPage() {
 
 function CampaignField({ label, value, onChange, placeholder }: { label: string; value: string; onChange: (value: string) => void; placeholder: string }) {
   return (
-    <label className="block text-[0.7rem] text-[#555] uppercase tracking-wider font-medium">
+    <label className="block text-[0.7rem] text-[#5f6962] uppercase tracking-wider font-medium">
       {label}
-      <input value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} className="mt-1.5 w-full rounded-lg border border-[#d8d8d8] px-3 py-2 text-sm normal-case tracking-normal text-[#111] outline-none" />
+      <input value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} className="mt-1.5 w-full rounded-lg border border-[#d7dbd6] px-3 py-2 text-sm normal-case tracking-normal text-[#142018] outline-none" />
     </label>
   );
 }

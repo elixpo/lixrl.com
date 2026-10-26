@@ -33,8 +33,8 @@ export default function CopyButton({ value }: { value: string }) {
       onClick={handleCopy}
       className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-white/85 transition-colors"
       style={{
-        background: 'rgba(0,0,0,0.05)',
-        border: '1px solid rgba(0,0,0,0.12)',
+        background: 'rgba(20,32,24,0.05)',
+        border: '1px solid rgba(20,32,24,0.12)',
       }}
     >
       {copied ? (
@@ -43,7 +43,7 @@ export default function CopyButton({ value }: { value: string }) {
           height="14"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#86efac"
+          stroke="#0b623c"
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"

@@ -208,9 +208,9 @@ export default function QrGenerator() {
     <div className="grid flex-1 gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:items-stretch">
       <form
         onSubmit={generate}
-        className="flex flex-col justify-center rounded-3xl border border-[#e3e3e3] bg-white p-5 shadow-[0_16px_45px_rgba(0,0,0,0.06)] md:p-8"
+        className="flex flex-col justify-center rounded-[1.6rem] border border-[#d7dbd6] bg-white p-5 shadow-[0_16px_45px_rgba(20,32,24,0.06)] md:p-8"
       >
-        <label htmlFor="qr-destination" className="text-sm font-bold text-[#222]">
+        <label htmlFor="qr-destination" className="text-sm font-bold text-[#1d2b22]">
           Link to turn into a QR code
         </label>
         <div className="mt-2 flex flex-col gap-2 sm:flex-row">
@@ -226,12 +226,12 @@ export default function QrGenerator() {
             value={destination}
             onChange={(event) => setDestination(event.target.value)}
             placeholder="https://example.com/page"
-            className="min-w-0 flex-1 rounded-xl border border-[#d8d8d8] bg-white px-4 py-3 text-sm text-[#111] outline-none transition-colors placeholder:text-[#999] focus:border-[#e53935]"
+            className="min-w-0 flex-1 rounded-xl border border-[#d7dbd6] bg-white px-4 py-3 text-sm text-[#142018] outline-none transition-colors placeholder:text-[#737b75] focus:border-[#3a65c7]"
           />
           <button
             type="submit"
             disabled={busy}
-            className="rounded-xl bg-gradient-to-r from-[#e53935] to-[#c62828] px-5 py-3 text-sm font-bold text-white shadow-[0_8px_22px_rgba(229,57,53,0.22)] disabled:cursor-wait disabled:opacity-60"
+            className="rounded-xl bg-[#142018] hover:bg-[#24372b] px-5 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgba(20,32,24,0.14)] disabled:cursor-wait disabled:opacity-60"
           >
             {busy ? 'Creating…' : 'Generate QR code'}
           </button>
@@ -239,9 +239,9 @@ export default function QrGenerator() {
 
         <div className="mt-8">
           <div className="flex items-center justify-between gap-4">
-            <h2 className="text-sm font-bold text-[#222]">Choose a style</h2>
+            <h2 className="text-sm font-bold text-[#1d2b22]">Choose a style</h2>
             {!paid && (
-              <Link href="/pricing" className="text-xs font-semibold text-[#c62828] no-underline">
+              <Link href="/pricing" className="text-xs font-semibold text-[#2f56b0] no-underline">
                 Unlock every style →
               </Link>
             )}
@@ -266,10 +266,10 @@ export default function QrGenerator() {
                   }}
                   className="group inline-flex h-11 items-center gap-2 rounded-full border px-3.5 text-left text-xs font-bold transition-all"
                   style={{
-                    borderColor: selected ? '#e53935' : '#e1e1e1',
-                    background: selected ? '#fff6f5' : '#ffffff',
-                    color: locked ? '#888' : '#222',
-                    boxShadow: selected ? '0 0 0 2px rgba(229,57,53,0.12)' : '0 1px 2px rgba(0,0,0,0.03)',
+                    borderColor: selected ? '#3a65c7' : '#d7dbd6',
+                    background: selected ? '#eef2ff' : '#ffffff',
+                    color: locked ? '#68716b' : '#1d2b22',
+                    boxShadow: selected ? '0 0 0 2px rgba(58,101,199,0.12)' : '0 1px 2px rgba(20,32,24,0.03)',
                   }}
                 >
                   <span
@@ -280,8 +280,8 @@ export default function QrGenerator() {
                     <span className="absolute inset-[6px] rounded-[2px] border-2 border-white/90" />
                   </span>
                   <span>{preset.name}</span>
-                  {locked && <span className="rounded-full bg-[#f1f1f1] px-1.5 py-0.5 text-[9px] uppercase tracking-wide text-[#777]">Pro</span>}
-                  {selected && !locked && <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#e53935] text-[10px] text-white" aria-hidden="true">✓</span>}
+                  {locked && <span className="rounded-full bg-[#f5f6f2] px-1.5 py-0.5 text-[9px] uppercase tracking-wide text-[#5f6962]">Pro</span>}
+                  {selected && !locked && <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#3a65c7] text-[10px] text-white" aria-hidden="true">✓</span>}
                 </button>
               );
             })}
@@ -289,10 +289,10 @@ export default function QrGenerator() {
         </div>
 
         <div className="mt-8 grid gap-3 sm:grid-cols-2">
-          <div className="rounded-2xl border border-[#e5e5e5] bg-[#fcfcfc] p-4">
+          <div className="rounded-[1.4rem] border border-[#d7dbd6] bg-[#f5f6f2] p-4">
             <div className="flex items-center justify-between gap-3">
-              <div className="text-sm font-bold text-[#222]">Center logo</div>
-              {!account.allowLogo && <span className="rounded-full bg-[#f5f5f5] px-2 py-1 text-[10px] font-bold text-[#777]">PRO</span>}
+              <div className="text-sm font-bold text-[#1d2b22]">Center logo</div>
+              {!account.allowLogo && <span className="rounded-full bg-[#f5f6f2] px-2 py-1 text-[10px] font-bold text-[#5f6962]">PRO</span>}
             </div>
             {account.allowLogo ? (
               <input
@@ -300,34 +300,34 @@ export default function QrGenerator() {
                 value={logoUrl}
                 onChange={(event) => setLogoUrl(event.target.value)}
                 placeholder="https://site.com/logo.png"
-                className="mt-2 w-full rounded-lg border border-[#dddddd] px-3 py-2 text-xs outline-none focus:border-[#e53935]"
+                className="mt-2 w-full rounded-lg border border-[#d7dbd6] px-3 py-2 text-xs outline-none focus:border-[#3a65c7]"
               />
             ) : (
-              <Link href="/pricing" className="mt-2 inline-flex text-xs font-semibold text-[#c62828] no-underline">
+              <Link href="/pricing" className="mt-2 inline-flex text-xs font-semibold text-[#2f56b0] no-underline">
                 Unlock logo →
               </Link>
             )}
           </div>
 
-          <div className="rounded-2xl border border-[#e5e5e5] bg-[#fcfcfc] p-4">
+          <div className="rounded-[1.4rem] border border-[#d7dbd6] bg-[#f5f6f2] p-4">
             <div className="flex items-center justify-between gap-3">
-              <div className="text-sm font-bold text-[#222]">Scan analytics</div>
-              {!paid && <span className="rounded-full bg-[#f5f5f5] px-2 py-1 text-[10px] font-bold text-[#777]">PAID</span>}
+              <div className="text-sm font-bold text-[#1d2b22]">Scan analytics</div>
+              {!paid && <span className="rounded-full bg-[#f5f6f2] px-2 py-1 text-[10px] font-bold text-[#5f6962]">PAID</span>}
             </div>
             {paid ? (
-              <label className="mt-2 flex cursor-pointer items-center gap-2 text-xs font-semibold text-[#444]">
+              <label className="mt-2 flex cursor-pointer items-center gap-2 text-xs font-semibold text-[#3d4842]">
                 <input
                   type="checkbox"
                   checked={trackScans}
                   onChange={(event) => setTrackScans(event.target.checked)}
-                  className="h-4 w-4 accent-[#e53935]"
+                  className="h-4 w-4 accent-[#3a65c7]"
                 />
                 Create a tracked Lixrl link
               </label>
             ) : (
               <Link
                 href={account.loggedIn ? '/pricing' : '/api/auth/login?return_to=%2Fgenerate'}
-                className="mt-2 inline-flex text-xs font-semibold text-[#c62828] no-underline"
+                className="mt-2 inline-flex text-xs font-semibold text-[#2f56b0] no-underline"
               >
                 {account.loggedIn ? 'Upgrade for scan analytics →' : 'Sign in to view options →'}
               </Link>
@@ -336,16 +336,16 @@ export default function QrGenerator() {
         </div>
 
         {error && (
-          <div className="mt-6 rounded-xl border border-[#efb8b5] bg-[#fff6f5] px-4 py-3 text-sm text-[#a82420]" role="alert">
+          <div className="mt-6 rounded-xl border border-[#fecdca] bg-[#fef3f2] px-4 py-3 text-sm text-[#b42318]" role="alert">
             {error}
           </div>
         )}
       </form>
 
-      <aside className="flex min-h-[320px] flex-col items-center justify-center rounded-3xl border border-[#e5e5e5] bg-[#fafafa] p-6 text-center lg:h-full lg:max-h-[560px] lg:min-h-0 lg:self-start lg:overflow-y-auto">
+      <aside className="flex min-h-[320px] flex-col items-center justify-center rounded-[1.6rem] border border-[#d7dbd6] bg-[#f5f6f2] p-6 text-center lg:h-full lg:max-h-[560px] lg:min-h-0 lg:self-start lg:overflow-y-auto">
         {qrData ? (
           <>
-            <div className="rounded-2xl bg-white p-3 shadow-[0_12px_35px_rgba(0,0,0,0.10)]">
+            <div className="rounded-[1.4rem] bg-white p-3 shadow-[0_12px_35px_rgba(20,32,24,0.10)]">
               <StyledQr
                 ref={qrRef}
                 options={options}
@@ -354,17 +354,17 @@ export default function QrGenerator() {
                 onError={setError}
               />
             </div>
-            <p className="mt-5 max-w-sm break-all font-mono text-xs leading-5 text-[#777]">{qrData}</p>
+            <p className="mt-5 max-w-sm break-all font-mono text-xs leading-5 text-[#5f6962]">{qrData}</p>
             {trackedResult && (
               <Link
                 href={`/dashboard/urls/${encodeURIComponent(trackedResult.short_code)}`}
-                className="mt-2 text-xs font-semibold text-[#c62828] no-underline"
+                className="mt-2 text-xs font-semibold text-[#2f56b0] no-underline"
               >
                 Open scan analytics →
               </Link>
             )}
             <div className="mt-5 flex w-full max-w-[520px] flex-col items-end gap-3">
-              <div className="inline-flex rounded-xl border border-[#d8d8d8] bg-white p-1" aria-label="QR download format">
+              <div className="inline-flex rounded-xl border border-[#d7dbd6] bg-white p-1" aria-label="QR download format">
                 {(['svg', 'png', 'jpeg'] as ExportFormat[]).map((format) => (
                   <button
                     key={format}
@@ -373,8 +373,8 @@ export default function QrGenerator() {
                     onClick={() => setExportFormat(format)}
                     className="rounded-lg px-3 py-1.5 text-[11px] font-bold uppercase transition-colors"
                     style={{
-                      background: exportFormat === format ? '#111' : 'transparent',
-                      color: exportFormat === format ? '#fff' : '#666',
+                      background: exportFormat === format ? '#142018' : 'transparent',
+                      color: exportFormat === format ? '#fff' : '#5f6962',
                     }}
                   >
                     {format === 'jpeg' ? 'JPG' : format}
@@ -385,18 +385,18 @@ export default function QrGenerator() {
                 <button
                   type="button"
                   onClick={() => qrRef.current?.download(exportFormat)}
-                  className="rounded-lg bg-[#111] px-4 py-2 text-xs font-bold text-white"
+                  className="rounded-lg bg-[#142018] px-4 py-2 text-xs font-bold text-white"
                 >
                   Download {exportFormat === 'jpeg' ? 'JPG' : exportFormat.toUpperCase()}
                 </button>
                 <button
                   type="button"
                   onClick={copyCompressedJpeg}
-                  className="rounded-lg border border-[#d8d8d8] bg-white px-4 py-2 text-xs font-bold text-[#333]"
+                  className="rounded-lg border border-[#d7dbd6] bg-white px-4 py-2 text-xs font-bold text-[#2b3830]"
                 >
                   {imageCopied ? 'JPG copied' : 'Copy compressed JPG'}
                 </button>
-                <button type="button" onClick={copyQrLink} className="rounded-lg border border-[#d8d8d8] bg-white px-4 py-2 text-xs font-bold text-[#333]">
+                <button type="button" onClick={copyQrLink} className="rounded-lg border border-[#d7dbd6] bg-white px-4 py-2 text-xs font-bold text-[#2b3830]">
                   {copied ? 'Copied' : 'Copy link'}
                 </button>
               </div>
@@ -406,7 +406,7 @@ export default function QrGenerator() {
           <div className="max-w-xs">
             <div className="mx-auto grid h-20 w-20 grid-cols-3 gap-1 rounded-xl bg-white p-3 shadow-sm" aria-hidden="true">
               {Array.from({ length: 9 }, (_, index) => (
-                <span key={index} className="rounded-sm bg-[#222]" style={{ opacity: index === 4 ? 0.15 : 1 }} />
+                <span key={index} className="rounded-sm bg-[#1d2b22]" style={{ opacity: index === 4 ? 0.15 : 1 }} />
               ))}
             </div>
             <h2 className="mt-5 text-base font-bold">Your QR code appears here</h2>

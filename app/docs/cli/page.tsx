@@ -1,35 +1,23 @@
-import type { Metadata } from 'next';
+import { docsMetadata } from '@/lib/docs-sections';
+import {
+  breadcrumbJsonLd,
+  CLI_INSTALL,
+  CLI_SOFTWARE_JSON_LD,
+  howToJsonLd,
+  jsonLd,
+} from '@/lib/seo';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 export const runtime = 'edge';
 
-export const metadata: Metadata = {
-  title: 'URL Shortener CLI and QR Code Generator — @elixpo/lixrl-cli',
-  description:
-    'Shorten URLs, generate QR codes, manage branded links, and export click analytics from your terminal with secure Elixpo Accounts device login.',
-  keywords: [
-    'URL shortener CLI',
-    'QR code generator CLI',
-    'command line URL shortener',
-    'short link automation',
-    'QR code automation',
-    'link analytics CLI',
-  ],
-  alternates: { canonical: '/docs/cli' },
-  openGraph: {
-    title: 'Lixrl CLI — Short URLs and QR codes from your terminal',
-    description: 'Create, track, and manage short links and QR codes without leaving your command line.',
-    url: '/docs/cli',
-    type: 'website',
-  },
-};
+export const metadata = docsMetadata('cli');
 
-const H2 = 'mt-12 mb-3 text-[1.45rem] font-extrabold tracking-tight text-[#111]';
-const H3 = 'mt-7 mb-2 text-[1.05rem] font-bold text-[#222]';
-const P = 'mb-4 max-w-[760px] text-[0.96rem] leading-7 text-[#555]';
+const H2 = 'doc-h2';
+const H3 = 'doc-h3';
+const P = 'doc-p';
 const CODE =
-  'mb-5 overflow-x-auto rounded-xl border border-[#262a3a] bg-[#16192a] p-4 font-mono text-[0.84rem] leading-6 text-[#f1f1f5]';
+  'mb-5 overflow-x-auto rounded-xl border border-[#24372b] bg-[#142018] p-4 font-mono text-[0.84rem] leading-6 text-[#f2f4ef]';
 
 function Command({ children }: { children: string }) {
   return (
@@ -41,7 +29,7 @@ function Command({ children }: { children: string }) {
 
 function Note({ children }: { children: ReactNode }) {
   return (
-    <div className="my-5 rounded-xl border border-[#f2c6c4] bg-[#fff7f6] px-4 py-3 text-sm leading-6 text-[#633]">
+    <div className="my-5 rounded-xl border border-[#c9d6f5] bg-[#eef2ff] px-4 py-3 text-sm leading-6 text-[#3d4842]">
       {children}
     </div>
   );
@@ -50,31 +38,41 @@ function Note({ children }: { children: ReactNode }) {
 export default function CliDocsPage() {
   const structuredData = {
     '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'Lixrl CLI',
-    alternateName: '@elixpo/lixrl-cli',
-    applicationCategory: 'DeveloperApplication',
-    operatingSystem: 'Linux, macOS, Windows',
-    description: 'Command-line URL shortener and QR code generator with link management, analytics exports, and secure device login.',
-    downloadUrl: 'https://www.npmjs.com/package/@elixpo/lixrl-cli',
-    softwareRequirements: 'Node.js 20 or newer',
-    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    '@graph': [
+      CLI_SOFTWARE_JSON_LD,
+      howToJsonLd({
+        name: 'Shorten a URL from the command line with Lixrl',
+        description: 'Install the Lixrl CLI, sign in, and create a short link and QR code from your terminal.',
+        steps: [
+          { name: 'Install the CLI', text: CLI_INSTALL },
+          { name: 'Sign in', text: 'Run lixrl login and approve the request in your browser.' },
+          { name: 'Shorten a URL', text: 'Run lixrl urls create https://example.com/launch' },
+          { name: 'Generate a QR code', text: 'Run lixrl qr https://example.com --format png --output launch.png' },
+        ],
+      }),
+      breadcrumbJsonLd([
+        { name: 'Home', path: '/' },
+        { name: 'Docs', path: '/docs' },
+        { name: 'Developer CLI', path: '/docs/cli' },
+      ]),
+    ],
   };
 
+
   return (
-    <article className="text-[#111]">
+    <article className="text-[#142018]">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(structuredData) }}
       />
-      <div className="rounded-2xl border border-[#e6e2dc] bg-gradient-to-br from-white to-[#fff8f7] p-6 md:p-8">
-        <div className="mb-4 inline-flex rounded-full border border-[#f1c8c6] bg-white px-3 py-1 font-mono text-xs font-semibold text-[#c62828]">
+      <div className="rounded-[1.4rem] bg-[#dce7ff] p-6 md:p-8">
+        <div className="mb-4 inline-flex rounded-full border border-[#c9d6f5] bg-white px-3 py-1 font-mono text-xs font-semibold text-[#2f56b0]">
           @elixpo/lixrl-cli
         </div>
-        <h1 className="mb-4 max-w-[760px] text-[2.2rem] font-black leading-tight tracking-[-0.035em] text-[#111] md:text-[2.8rem]">
+        <h1 className="doc-h1 max-w-[860px]">
           Short links and QR codes from your terminal
         </h1>
-        <p className="max-w-[740px] text-base leading-7 text-[#555] md:text-[1.05rem]">
+        <p className="max-w-[740px] text-base leading-7 text-[#5f6962] md:text-[1.05rem]">
           Create short URLs, generate QR codes, export analytics, and manage
           every production link from one command line. Keep work moving without
           switching between link tools, dashboards, and manual copy-paste steps.
@@ -84,13 +82,13 @@ export default function CliDocsPage() {
             href="https://www.npmjs.com/package/@elixpo/lixrl-cli"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg bg-[#e53935] px-4 py-2.5 text-sm font-bold text-white no-underline"
+            className="rounded-lg bg-[#3a65c7] px-4 py-2.5 text-sm font-bold text-white no-underline"
           >
             View npm package
           </a>
           <Link
             href="#sign-in"
-            className="rounded-lg border border-[#d8d8d8] bg-white px-4 py-2.5 text-sm font-bold text-[#222] no-underline"
+            className="rounded-lg border border-[#d7dbd6] bg-white px-4 py-2.5 text-sm font-bold text-[#1d2b22] no-underline"
           >
             See secure sign-in
           </Link>
@@ -100,8 +98,8 @@ export default function CliDocsPage() {
       <h2 id="install" className={H2}>Install</h2>
       <p className={P}>
         Node.js 20 or newer is required. The package installs both{' '}
-        <code className="font-mono text-[#222]">lixrl</code> and the compatible{' '}
-        <code className="font-mono text-[#222]">shortner</code> alias.
+        <code className="font-mono text-[#1d2b22]">lixrl</code> and the compatible{' '}
+        <code className="font-mono text-[#1d2b22]">shortner</code> alias.
       </p>
       <Command>{`npm install --global @elixpo/lixrl-cli
 lixrl --version
@@ -125,7 +123,7 @@ lixrl --help`}</Command>
       </p>
 
       <h3 id="device-login" className={H3}>Recommended: Accounts device login</h3>
-      <ol className="mb-5 list-decimal space-y-2 pl-6 text-[0.96rem] leading-7 text-[#555]">
+      <ol className="mb-5 list-decimal space-y-2 pl-6 text-[0.96rem] leading-7 text-[#5f6962]">
         <li>Run the command and choose whether to create a new key or paste an existing key.</li>
         <li>For a new key, the CLI displays a prefilled official Accounts URL and one-time code.</li>
         <li>Press Enter to open the URL, or use <code className="font-mono">--open</code> to launch it immediately.</li>
@@ -160,7 +158,7 @@ lixrl whoami`}</Command>
       <h3 id="direct-key-login" className={H3}>Paste an existing API key</h3>
       <p className={P}>
         If you or an administrator already created a restricted key under{' '}
-        <Link href="/profile/keys" className="font-semibold text-[#c62828]">
+        <Link href="/profile/keys" className="font-semibold text-[#2f56b0]">
         Profile → API Keys
         </Link>, choose option 2 during login or paste it through the masked prompt:
       </p>
@@ -286,7 +284,7 @@ lixrl skills install lixrl-qr`}</Command>
       </p>
 
       <h2 id="automation-contract" className={H2}>Automation contract</h2>
-      <ul className="mb-6 list-disc space-y-2 pl-6 text-[0.96rem] leading-7 text-[#555]">
+      <ul className="mb-6 list-disc space-y-2 pl-6 text-[0.96rem] leading-7 text-[#5f6962]">
         <li><code className="font-mono">--json</code> returns stable machine-readable output.</li>
         <li><code className="font-mono">--no-input</code> prevents hidden prompts in agents and CI.</li>
         <li>Deletion, revocation, unmapping, and overwrite operations require <code className="font-mono">--yes</code>.</li>

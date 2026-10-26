@@ -3,6 +3,10 @@ export const runtime = 'edge';
 import { redirect } from 'next/navigation';
 import Sidebar from '@/app/components/Sidebar';
 import { getCurrentUser } from '@/lib/auth';
+import { noIndexMetadata } from '@/lib/seo';
+
+// Auth-gated, per-user surface: never index.
+export const metadata = noIndexMetadata('Profile');
 
 export default async function ProfileLayout({
   children,
@@ -13,10 +17,10 @@ export default async function ProfileLayout({
   if (!user) redirect('/login');
 
   return (
-    <div className="theme-light min-h-screen bg-white">
+    <div className="theme-light min-h-screen bg-paper">
       <div className="relative">
         <Sidebar user={user} />
-        <main className="px-4 sm:px-8 pb-4 sm:pb-8 pt-20 sm:pt-24">
+        <main id="main-content" className="mx-auto w-full max-w-[1450px] px-4 sm:px-8 pb-10 sm:pb-12 pt-24 sm:pt-28">
           {children}
         </main>
       </div>

@@ -1,8 +1,9 @@
-'use client';
-
-const H1 = 'text-[2.1rem] md:text-[2.4rem] font-extrabold tracking-tight text-white mb-4 leading-tight';
+import { docsMetadata } from '@/lib/docs-sections';
+const H1 = 'doc-h1';
 const LEDE = 'text-white/70 text-base md:text-[1.05rem] leading-relaxed mb-8';
-const P = 'text-white/70 text-[0.96rem] leading-relaxed mb-4';
+const P = 'doc-p';
+
+export const metadata = docsMetadata('webhooks');
 
 export default function WebhooksPage() {
   return (
@@ -17,11 +18,11 @@ export default function WebhooksPage() {
         className="p-5 rounded-xl"
         style={{
           background:
-            'linear-gradient(135deg, rgba(229,57,53,0.12) 0%, rgba(95,182,255,0.05) 100%)',
-          border: '1px solid rgba(229,57,53,0.25)',
+            'linear-gradient(135deg, rgba(58,101,199,0.12) 0%, rgba(95,182,255,0.05) 100%)',
+          border: '1px solid rgba(58,101,199,0.25)',
         }}
       >
-        <div className="text-[11px] font-bold tracking-wider uppercase text-[#c62828] mb-1">
+        <div className="text-[11px] font-bold tracking-wider uppercase text-[#2f56b0] mb-1">
           Coming soon
         </div>
         <p className={`${P} mb-0`}>
