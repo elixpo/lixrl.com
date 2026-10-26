@@ -2,6 +2,7 @@ import { buildMetadata, jsonLd } from '@/lib/seo';
 import Link from 'next/link';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import '../styles/tools.css';
 import QrGenerator from './QrGenerator';
 
 const pageTitle = 'Free QR Code Generator — URL to QR Code in Seconds';
@@ -106,57 +107,102 @@ export default function QrCodeGeneratorPage() {
   };
 
   return (
-    <div className="theme-light min-h-screen bg-paper text-ink">
+    <div className="min-h-screen bg-paper text-ink">
       <Navbar />
 
       <main id="main-content">
-        <section
-          className="shell flex min-h-[calc(100svh-72px)] flex-col pb-12 pt-10 md:pt-14"
-          aria-labelledby="qr-generator-heading"
-        >
-          <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <section className="shell pb-14 pt-10 md:pb-20 md:pt-16" aria-labelledby="qr-generator-heading">
+          <header className="mb-8 grid gap-5 border-b border-line pb-8 md:mb-10 md:pb-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
             <div>
+              <p className="eyebrow">Free tool · No account required</p>
               <h1 id="qr-generator-heading" className="display-2">
-                Create a QR code
+                Create a QR code, <em>ready to print.</em>
               </h1>
-              <p className="lede mt-3">Paste a link. Pick a style. Download instantly.</p>
             </div>
-            <p className="badge border border-line bg-white text-[#5f6962]">Free · No account required</p>
-          </div>
+            <div>
+              <p className="lede max-w-md">Paste a link, pick a style, and download a sharp SVG, PNG, or JPG in seconds.</p>
+              <ul className="mt-4 flex flex-wrap gap-2" aria-label="Included for free">
+                {['SVG · PNG · JPG', 'Three styles', 'Runs in your browser'].map((item) => (
+                  <li key={item} className="badge border border-line bg-white text-[#5f6962]">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </header>
           <QrGenerator />
         </section>
 
-        <section className="shell grid gap-10 border-t border-line py-16 md:py-24 lg:grid-cols-[0.8fr_1.2fr]" aria-labelledby="tracked-qr-codes">
+        <section className="border-y border-line bg-paper-soft" aria-labelledby="qr-how">
+          <div className="shell py-14 md:py-20">
+            <div className="mb-8 max-w-2xl">
+              <p className="eyebrow">How it works</p>
+              <h2 id="qr-how" className="display-2 !text-[clamp(1.9rem,4vw,3rem)]">
+                Three steps from link to print
+              </h2>
+            </div>
+            <ol className="tool-steps">
+              <li>
+                <b aria-hidden="true">01</b>
+                <h3>Paste a link</h3>
+                <p>Any public web address works. Basic codes are generated locally and open the destination directly.</p>
+              </li>
+              <li>
+                <b aria-hidden="true">02</b>
+                <h3>Pick a style</h3>
+                <p>Three styles are free. Pro and Business unlock the full catalog and a custom center logo.</p>
+              </li>
+              <li>
+                <b aria-hidden="true">03</b>
+                <h3>Download or copy</h3>
+                <p>SVG stays sharp at any print size; PNG suits screens; a compressed JPG copies straight to the clipboard.</p>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section className="shell grid gap-10 py-16 md:py-24 lg:grid-cols-[0.8fr_1.2fr] lg:items-center" aria-labelledby="tracked-qr-codes">
           <div>
             <p className="eyebrow">Optional scan tracking</p>
-            <h2 id="tracked-qr-codes" className="display-2 !text-[clamp(2rem,4.5vw,3.6rem)]">
-              Make the QR code measurable
+            <h2 id="tracked-qr-codes" className="display-2 !text-[clamp(1.9rem,4vw,3rem)]">
+              Make the QR code <em>measurable.</em>
             </h2>
-            <p className="mt-4 text-sm leading-6 text-[#5f6962]">
+            <p className="mt-4 max-w-md text-sm leading-6 text-[#5f6962]">
               A normal QR code opens the destination directly. A tracked QR code opens a Lixrl short link first, so paid members can review scan activity without changing the printed code.
             </p>
-            <Link href="/pricing" className="btn-primary mt-6">
-              Compare QR features
-            </Link>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/pricing" className="btn-primary">
+                Compare QR features
+              </Link>
+              <Link href="/docs/cli#qr-codes" className="btn-secondary">
+                QR codes from the CLI
+              </Link>
+            </div>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <article className="glass-card p-6">
-              <h3 className="text-xl font-bold tracking-[-0.04em]">Basic QR code</h3>
-              <ul className="mt-4 space-y-3 text-sm leading-6 text-[#5f6962]">
-                <li>Directly opens the destination URL</li>
-                <li>Three included visual styles</li>
-                <li>SVG, PNG, and JPEG exports</li>
-                <li>Compressed JPEG clipboard copy</li>
-                <li>No account required</li>
+            <article className="glass-card p-6 md:p-7">
+              <p className="font-mono text-[0.62rem] font-bold uppercase tracking-[0.16em] text-[#5f6962]">Free</p>
+              <h3 className="mt-3 text-xl font-bold tracking-[-0.04em]">Basic QR code</h3>
+              <ul className="mt-5 space-y-3 text-sm leading-6 text-[#5f6962]">
+                {['Directly opens the destination URL', 'Three included visual styles', 'SVG, PNG, and JPEG exports', 'Compressed JPEG clipboard copy', 'No account required'].map((item) => (
+                  <li key={item} className="flex gap-2.5">
+                    <span aria-hidden="true" className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#c3c9c3]" />
+                    {item}
+                  </li>
+                ))}
               </ul>
             </article>
-            <article className="rounded-[1.4rem] border border-[rgba(49,95,202,0.18)] bg-[#dce7ff] p-6">
-              <h3 className="text-xl font-bold tracking-[-0.04em]">Tracked QR code</h3>
-              <ul className="mt-4 space-y-3 text-sm leading-6 text-[#5f6962]">
-                <li>Uses a persistent Lixrl short link</li>
-                <li>Complete visual style catalog</li>
-                <li>Custom center logo</li>
-                <li>Scan activity in the dashboard</li>
+            <article className="art-panel rounded-[1.4rem] border border-[rgba(49,95,202,0.18)] bg-[#dce7ff] p-6 md:p-7">
+              <i className="art-ring" aria-hidden="true" />
+              <p className="font-mono text-[0.62rem] font-bold uppercase tracking-[0.16em] text-[#2f56b0]">Pro &amp; Business</p>
+              <h3 className="mt-3 text-xl font-bold tracking-[-0.04em]">Tracked QR code</h3>
+              <ul className="mt-5 space-y-3 text-sm leading-6 text-[#3d4842]">
+                {['Uses a persistent Lixrl short link', 'Complete visual style catalog', 'Custom center logo', 'Scan activity in the dashboard'].map((item) => (
+                  <li key={item} className="flex gap-2.5">
+                    <span aria-hidden="true" className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#3a65c7]" />
+                    {item}
+                  </li>
+                ))}
               </ul>
             </article>
           </div>
@@ -165,16 +211,16 @@ export default function QrCodeGeneratorPage() {
         <section className="mx-auto w-[min(calc(100%-2rem),1000px)] pb-20 md:pb-28" aria-labelledby="qr-faq">
           <div className="text-center">
             <p className="eyebrow">QR code questions</p>
-            <h2 id="qr-faq" className="display-2 !text-[clamp(2rem,4.5vw,3.6rem)]">Everything needed before downloading</h2>
+            <h2 id="qr-faq" className="display-2 !text-[clamp(1.9rem,4vw,3rem)]">Everything needed before downloading</h2>
           </div>
           <div className="mt-8 divide-y divide-[#d7dbd6] rounded-[1.4rem] border border-line bg-white px-5 md:px-7">
             {faqs.map((item) => (
-              <details key={item.question} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold">
+              <details key={item.question} className="group py-2">
+                <summary className="flex min-h-[52px] cursor-pointer list-none items-center justify-between gap-4 rounded-xl font-bold [&::-webkit-details-marker]:hidden">
                   {item.question}
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#d7dbd6] text-lg font-normal text-[#5f6962] transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#d7dbd6] text-lg font-normal text-[#5f6962] transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
                 </summary>
-                <p className="max-w-2xl pr-10 pt-3 text-sm leading-6 text-[#5f6962]">{item.answer}</p>
+                <p className="max-w-2xl pb-4 pr-10 pt-1 text-sm leading-6 text-[#5f6962]">{item.answer}</p>
               </details>
             ))}
           </div>

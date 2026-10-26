@@ -18,6 +18,7 @@ app/
   page.tsx                   - Landing entry (auth redirect) → LandingPageClient.tsx (server-rendered)
   layout.tsx                 - Root layout: SEO, favicon (system fonts)
   globals.css                - Design tokens, component classes, focus + reduced-motion
+  styles/app-shell.css       - Logged-in app shell: page header, panels, responsive tables, skeletons, bottom tab bar (imported by dashboard/profile/admin layouts)
   icon.png / apple-icon.png  - Favicon (Next auto-emits link tags)
   components/
     Navbar.tsx               - Floating pill header + skip link + mobile menu
@@ -26,7 +27,7 @@ app/
     NotFoundView.tsx         - Shared 404 surface
     landing/GuestShortener   - Client island for the guest short-link form
   pricing/                   - Pricing page ("coming soon" until tiers ship)
-  docs/                      - Integrator docs (TODO: split into sections)
+  docs/                      - Integrator docs; sections come from lib/docs-sections.ts (also drives sitemap)
   dashboard/                 - Logged-in user dashboard
   profile/                   - Account profile + API key management
   admin/                     - Admin panel (RBAC-gated)

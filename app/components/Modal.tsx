@@ -4,6 +4,7 @@ import {
   type ReactNode,
   useCallback,
   useEffect,
+  useId,
   useRef,
   useState,
 } from 'react';
@@ -48,6 +49,8 @@ export default function Modal({
   const [mounted, setMounted] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const previouslyFocused = useRef<HTMLElement | null>(null);
+  const titleId = useId();
+  const descriptionId = useId();
 
   // Keep the latest onClose in a ref so it doesn't drive the focus
   // effect's deps. Parents that re-render on every keystroke (e.g. the
@@ -125,61 +128,43 @@ export default function Modal({
   if (!mounted || !open) return null;
 
   return createPortal(
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-      style={{ animation: 'modalBackdropIn 180ms ease-out' }}
-    >
+    <div className="fixed inset-0 z-[100] flex items-end justify-center p-2 sm:items-center sm:p-4">
       {/* Backdrop */}
       <button
         type="button"
         aria-label="Close"
         tabIndex={-1}
-        className="absolute inset-0 cursor-default"
+        className="app-modal-backdrop absolute inset-0 cursor-default border-none bg-[rgba(20,32,24,0.32)] backdrop-blur-[8px]"
         onClick={handleBackdropClick}
-        style={{
-          background: 'rgba(20, 32, 24, 0.32)',
-          backdropFilter: 'blur(8px)',
-          border: 'none',
-        }}
       />
 
-      {/* Dialog */}
+      {/* Dialog — bottom sheet on phones, centred card from sm up. */}
       <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
-        aria-labelledby={title ? 'modal-title' : undefined}
-        aria-describedby={description ? 'modal-description' : undefined}
+        aria-labelledby={title ? titleId : undefined}
+        aria-describedby={description ? descriptionId : undefined}
         tabIndex={-1}
-        className="theme-light relative w-full rounded-[1.4rem] outline-none"
+        className="app-modal-dialog theme-light relative flex max-h-[calc(100dvh-1rem)] w-full flex-col overflow-hidden rounded-[1.4rem] border border-line bg-paper outline-none sm:max-h-[calc(100dvh-2rem)]"
         style={{
           maxWidth: SIZE_MAX_WIDTH[size],
-          background: '#fbfbf8',
-          border: '1px solid #d7dbd6',
-          boxShadow: '0 24px 80px rgba(20,32,24,0.18)',
-          animation: 'modalDialogIn 220ms cubic-bezier(0.22, 1, 0.36, 1)',
+          boxShadow: '0 28px 80px rgba(20,32,24,0.2)',
         }}
       >
-        {/* Header */}
         {(title || !hideClose) && (
-          <div
-            className="flex items-start justify-between gap-4 px-6 py-5"
-            style={{ borderBottom: '1px solid rgba(20,32,24,0.08)' }}
-          >
-            <div className="flex-1 min-w-0">
+          <div className="flex shrink-0 items-start justify-between gap-4 border-b border-line px-5 py-5 sm:px-6">
+            <div className="min-w-0 flex-1">
               {title && (
                 <h2
-                  id="modal-title"
-                  className="text-[1.5rem] font-bold leading-[1.05] text-[#142018] tracking-[-0.045em]"
+                  id={titleId}
+                  className="text-[1.45rem] font-bold leading-[1.05] tracking-[-0.045em] text-ink"
                 >
                   {title}
                 </h2>
               )}
               {description && (
-                <p
-                  id="modal-description"
-                  className="text-sm text-[#5f6962] mt-1 leading-relaxed"
-                >
+                <p id={descriptionId} className="mt-1.5 text-sm leading-relaxed text-[#5f6962]">
                   {description}
                 </p>
               )}
@@ -189,17 +174,9 @@ export default function Modal({
                 type="button"
                 onClick={onClose}
                 aria-label="Close dialog"
-                className="flex-shrink-0 w-10 h-10 inline-flex items-center justify-center rounded-full text-[#5f6962] hover:text-[#142018] transition-colors"
-                style={{ background: 'transparent', border: 'none' }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.background =
-                    'rgba(20,32,24,0.05)')
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.background = 'transparent')
-                }
+                className="-mr-1 -mt-1 inline-flex h-10 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent text-[#5f6962] transition-colors hover:bg-paper-deep hover:text-ink"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <line x1="18" y1="6" x2="6" y2="18" />
                   <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
@@ -208,26 +185,8 @@ export default function Modal({
           </div>
         )}
 
-        {/* Body */}
-        <div className="px-6 py-5">{children}</div>
+        <div className="overflow-y-auto px-5 py-5 sm:px-6">{children}</div>
       </div>
-
-      <style jsx global>{`
-        @keyframes modalBackdropIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes modalDialogIn {
-          from {
-            opacity: 0;
-            transform: translateY(12px) scale(0.96);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-      `}</style>
     </div>,
     document.body,
   );
@@ -273,39 +232,23 @@ export function ConfirmDialog({
       disableBackdropClose={loading}
     >
       {error && (
-        <p
-          role="alert"
-          className="mb-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm leading-5 text-red-700"
-        >
-          {error}
-        </p>
+        <div role="alert" className="notice notice--danger mb-4">
+          <p className="notice__body">{error}</p>
+        </div>
       )}
-      <div className="flex gap-2 justify-end">
-        <button
-          type="button"
-          onClick={onClose}
-          disabled={loading}
-          className="min-h-[44px] px-5 rounded-full text-sm font-bold text-[#142018] transition-colors"
-          style={{
-            background: 'transparent',
-            border: '1px solid #142018',
-          }}
-        >
+      <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+        <button type="button" onClick={onClose} disabled={loading} className="btn-secondary">
           {cancelLabel}
         </button>
         <button
           type="button"
           onClick={onConfirm}
           disabled={loading}
-          className="min-h-[44px] px-5 rounded-full text-sm font-bold text-white transition-all"
-          style={{
-            background: danger
-              ? '#b42318'
-              : '#142018',
-            opacity: loading ? 0.6 : 1,
-          }}
+          aria-busy={loading}
+          className={`btn-primary ${danger ? '!border-[#b42318] !bg-[#b42318] hover:!bg-[#912018]' : ''}`}
         >
-          {loading ? 'Working...' : confirmLabel}
+          {loading && <span className="spinner" aria-hidden="true" />}
+          {loading ? 'Working…' : confirmLabel}
         </button>
       </div>
     </Modal>
