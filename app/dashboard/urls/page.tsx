@@ -8,8 +8,8 @@ export const runtime = 'edge';
 
 const CARD_STYLE = {
   background:
-    'linear-gradient(135deg, rgba(255,255,255,0.96) 0%, rgba(250,250,250,0.92) 100%)',
-  border: '1px solid rgba(0,0,0,0.10)',
+    '#ffffff',
+  border: '1px solid rgba(20,32,24,0.10)',
   backdropFilter: 'blur(20px)',
 } as const;
 
@@ -88,7 +88,7 @@ export default async function UrlsPage({
       {/* Header */}
       <div className="flex items-end justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-2xl md:text-[1.8rem] font-bold text-white tracking-tight">
+          <h1 className="app-title">
             My URLs
           </h1>
           <p className="text-sm text-white/55 mt-1">
@@ -102,8 +102,8 @@ export default async function UrlsPage({
             href="/api/urls/export.csv"
             className="inline-flex items-center gap-2 px-3 py-2 rounded-[10px] text-sm font-medium text-white/85 no-underline transition-colors"
             style={{
-              background: 'rgba(0,0,0,0.05)',
-              border: '1px solid rgba(0,0,0,0.12)',
+              background: 'rgba(20,32,24,0.05)',
+              border: '1px solid rgba(20,32,24,0.12)',
             }}
             title="Download every link as CSV"
           >
@@ -127,8 +127,8 @@ export default async function UrlsPage({
             href="/dashboard/new"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-[10px] text-sm font-semibold text-white no-underline transition-all"
             style={{
-              background: 'linear-gradient(135deg, #e53935 0%, #c62828 100%)',
-              boxShadow: '0 4px 14px rgba(229,57,53,0.35)',
+              background: '#142018',
+              boxShadow: 'none',
             }}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -140,7 +140,7 @@ export default async function UrlsPage({
         </div>
       </div>
 
-      <div className="p-6 rounded-2xl" style={CARD_STYLE}>
+      <div className="p-6 rounded-[1.4rem]" style={CARD_STYLE}>
         {/* Search + filter chips */}
         <div className="flex flex-col md:flex-row md:items-center gap-3 mb-5">
           <form method="get" className="flex-1 max-w-md">
@@ -167,7 +167,7 @@ export default async function UrlsPage({
                 defaultValue={search}
                 className="w-full pl-9 pr-3 py-2 rounded-lg text-sm outline-none text-white placeholder-white/40"
                 style={{
-                  background: 'rgba(0,0,0,0.04)',
+                  background: 'rgba(20,32,24,0.04)',
                   border: '1px solid rgba(255,255,255,0.1)',
                 }}
               />
@@ -190,13 +190,13 @@ export default async function UrlsPage({
                   className="text-xs px-3 py-1.5 rounded-lg no-underline transition-colors font-medium"
                   style={{
                     background: active
-                      ? 'rgba(229,57,53,0.12)'
+                      ? 'rgba(58,101,199,0.12)'
                       : 'transparent',
-                    color: active ? '#c62828' : 'rgba(0,0,0,0.55)',
+                    color: active ? '#2f56b0' : 'rgba(20,32,24,0.55)',
                     border: '1px solid',
                     borderColor: active
-                      ? 'rgba(229,57,53,0.4)'
-                      : 'rgba(0,0,0,0.10)',
+                      ? 'rgba(58,101,199,0.4)'
+                      : 'rgba(20,32,24,0.10)',
                   }}
                 >
                   {f.label}

@@ -33,8 +33,8 @@ export const runtime = 'edge';
 
 const CARD_STYLE = {
   background:
-    'linear-gradient(135deg, rgba(255,255,255,0.96) 0%, rgba(250,250,250,0.92) 100%)',
-  border: '1px solid rgba(0,0,0,0.10)',
+    '#ffffff',
+  border: '1px solid rgba(20,32,24,0.10)',
   backdropFilter: 'blur(20px)',
 } as const;
 
@@ -63,7 +63,7 @@ function quotaTone(usagePct: number): {
       tone: 'warn',
     };
   return {
-    fill: 'linear-gradient(90deg, #e53935 0%, #c62828 100%)',
+    fill: '#3a65c7',
     label: '',
     tone: 'normal',
   };
@@ -148,7 +148,7 @@ export default async function DashboardPage({
       {/* Header — title + primary CTA */}
       <div className="flex items-end justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-2xl md:text-[1.8rem] font-bold text-white tracking-tight">
+          <h1 className="app-title">
             Dashboard
           </h1>
           <p className="text-sm text-white/55 mt-1">
@@ -159,8 +159,8 @@ export default async function DashboardPage({
           href="/dashboard/new"
           className="inline-flex items-center gap-2 px-4 py-2 rounded-[10px] text-sm font-semibold text-white no-underline transition-all"
           style={{
-            background: 'linear-gradient(135deg, #e53935 0%, #c62828 100%)',
-            boxShadow: '0 4px 14px rgba(229,57,53,0.35)',
+            background: '#142018',
+            boxShadow: 'none',
           }}
         >
           <svg
@@ -184,8 +184,8 @@ export default async function DashboardPage({
         <div
           className="mb-6 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3"
           style={{
-            background: 'rgba(229,57,53,0.08)',
-            border: '1px dashed rgba(229,57,53,0.35)',
+            background: 'rgba(58,101,199,0.08)',
+            border: '1px dashed rgba(58,101,199,0.35)',
           }}
         >
           <div>
@@ -201,7 +201,7 @@ export default async function DashboardPage({
           </div>
           <Link
             href="/pricing"
-            className="text-xs font-semibold text-[#e53935] no-underline hover:underline shrink-0"
+            className="text-xs font-semibold text-[#3a65c7] no-underline hover:underline shrink-0"
           >
             Compare plans →
           </Link>
@@ -214,8 +214,8 @@ export default async function DashboardPage({
           className="mb-6 p-4 md:p-5 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3"
           style={{
             background:
-              'linear-gradient(135deg, rgba(229,57,53,0.14) 0%, rgba(95,182,255,0.06) 100%)',
-            border: '1px solid rgba(229,57,53,0.3)',
+              '#eef2ff',
+            border: '1px solid rgba(58,101,199,0.3)',
           }}
         >
           <div>
@@ -236,8 +236,8 @@ export default async function DashboardPage({
             href="/pricing"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-[10px] text-sm font-semibold text-white no-underline whitespace-nowrap"
             style={{
-              background: 'linear-gradient(135deg, #e53935 0%, #c62828 100%)',
-              boxShadow: '0 4px 14px rgba(229,57,53,0.4)',
+              background: '#142018',
+              boxShadow: 'none',
             }}
           >
             View pricing
@@ -261,7 +261,7 @@ export default async function DashboardPage({
       {/* Stats row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {/* My URLs + progress */}
-        <div className="p-5 rounded-2xl" style={CARD_STYLE}>
+        <div className="p-5 rounded-[1.4rem]" style={CARD_STYLE}>
           <div className="text-[0.7rem] text-white/45 uppercase tracking-wider mb-2">
             My URLs
           </div>
@@ -275,7 +275,7 @@ export default async function DashboardPage({
             <div className="mt-3">
               <div
                 className="w-full h-1.5 rounded-full overflow-hidden"
-                style={{ background: 'rgba(0,0,0,0.08)' }}
+                style={{ background: 'rgba(20,32,24,0.08)' }}
               >
                 <div
                   className="h-full rounded-full transition-all"
@@ -289,7 +289,7 @@ export default async function DashboardPage({
                 <div
                   className="text-[0.7rem] mt-1.5 font-medium"
                   style={{
-                    color: tone.tone === 'over' ? '#f87171' : '#fde7a4',
+                    color: tone.tone === 'over' ? '#b42318' : '#8a5a00',
                   }}
                 >
                   {usagePct}% · {tone.label}
@@ -300,7 +300,7 @@ export default async function DashboardPage({
         </div>
 
         {/* Total clicks */}
-        <div className="p-5 rounded-2xl" style={CARD_STYLE}>
+        <div className="p-5 rounded-[1.4rem]" style={CARD_STYLE}>
           <div className="text-[0.7rem] text-white/45 uppercase tracking-wider mb-2">
             Total clicks
           </div>
@@ -311,7 +311,7 @@ export default async function DashboardPage({
         </div>
 
         {/* Recent clicks */}
-        <div className="p-5 rounded-2xl" style={CARD_STYLE}>
+        <div className="p-5 rounded-[1.4rem]" style={CARD_STYLE}>
           <div className="text-[0.7rem] text-white/45 uppercase tracking-wider mb-2">
             Clicks · {days}d
           </div>
@@ -324,7 +324,7 @@ export default async function DashboardPage({
         </div>
 
         {/* Plan */}
-        <div className="p-5 rounded-2xl" style={CARD_STYLE}>
+        <div className="p-5 rounded-[1.4rem]" style={CARD_STYLE}>
           <div className="text-[0.7rem] text-white/45 uppercase tracking-wider mb-2">
             Plan
           </div>
@@ -332,9 +332,9 @@ export default async function DashboardPage({
             <span
               className="inline-flex items-center px-2 py-0.5 rounded-md text-[0.75rem] font-bold uppercase tracking-wider"
               style={{
-                background: 'rgba(229,57,53,0.18)',
-                color: '#c62828',
-                border: '1px solid rgba(229,57,53,0.4)',
+                background: 'rgba(58,101,199,0.18)',
+                color: '#2f56b0',
+                border: '1px solid rgba(58,101,199,0.4)',
               }}
             >
               {user.tier}
@@ -343,7 +343,7 @@ export default async function DashboardPage({
           {user.tier === 'free' && (
             <Link
               href="/pricing"
-              className="text-[0.7rem] text-[#e53935] hover:underline mt-1.5 inline-block no-underline"
+              className="text-[0.7rem] text-[#3a65c7] hover:underline mt-1.5 inline-block no-underline"
             >
               Upgrade →
             </Link>
@@ -352,7 +352,7 @@ export default async function DashboardPage({
       </div>
 
       {/* Timeline */}
-      <div className="p-6 rounded-2xl mb-6" style={CARD_STYLE}>
+      <div className="p-6 rounded-[1.4rem] mb-6" style={CARD_STYLE}>
         <div className="flex justify-between items-center mb-4">
           <div className="text-[11px] font-bold tracking-[0.1em] uppercase text-white/45">
             Click timeline
@@ -365,8 +365,8 @@ export default async function DashboardPage({
                 className="text-xs px-2.5 py-1 rounded-lg no-underline transition-all font-medium"
                 style={{
                   background:
-                    days === d ? 'rgba(229,57,53,0.12)' : 'transparent',
-                  color: days === d ? '#c62828' : 'rgba(0,0,0,0.55)',
+                    days === d ? 'rgba(58,101,199,0.12)' : 'transparent',
+                  color: days === d ? '#2f56b0' : 'rgba(20,32,24,0.55)',
                 }}
               >
                 {d}d
@@ -380,7 +380,7 @@ export default async function DashboardPage({
       {/* Two-column: Top URLs + Recently created */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Top URLs by clicks */}
-        <div className="p-6 rounded-2xl" style={CARD_STYLE}>
+        <div className="p-6 rounded-[1.4rem]" style={CARD_STYLE}>
           <div className="flex justify-between items-center mb-4">
             <div className="text-[11px] font-bold tracking-[0.1em] uppercase text-white/45">
               Top URLs
@@ -398,12 +398,12 @@ export default async function DashboardPage({
                 <li
                   key={u.short_code}
                   className="flex items-center gap-3 p-3 rounded-lg"
-                  style={{ background: 'rgba(0,0,0,0.03)' }}
+                  style={{ background: 'rgba(20,32,24,0.03)' }}
                 >
                   <div className="flex-1 min-w-0">
                     <Link
                       href={`/dashboard/urls/${u.short_code}`}
-                      className="text-[#c62828] text-sm font-mono font-semibold no-underline hover:underline"
+                      className="text-[#2f56b0] text-sm font-mono font-semibold no-underline hover:underline"
                     >
                       /{u.short_code}
                     </Link>
@@ -428,7 +428,7 @@ export default async function DashboardPage({
         </div>
 
         {/* Recently created URLs */}
-        <div className="p-6 rounded-2xl" style={CARD_STYLE}>
+        <div className="p-6 rounded-[1.4rem]" style={CARD_STYLE}>
           <div className="flex justify-between items-center mb-4">
             <div className="text-[11px] font-bold tracking-[0.1em] uppercase text-white/45">
               Recently created
@@ -446,12 +446,12 @@ export default async function DashboardPage({
                 <li
                   key={u.short_code}
                   className="flex items-center gap-3 p-3 rounded-lg"
-                  style={{ background: 'rgba(0,0,0,0.03)' }}
+                  style={{ background: 'rgba(20,32,24,0.03)' }}
                 >
                   <div className="flex-1 min-w-0">
                     <Link
                       href={`/dashboard/urls/${u.short_code}`}
-                      className="text-[#c62828] text-sm font-mono font-semibold no-underline hover:underline"
+                      className="text-[#2f56b0] text-sm font-mono font-semibold no-underline hover:underline"
                     >
                       /{u.short_code}
                     </Link>
@@ -487,8 +487,8 @@ function EmptyUrls() {
         href="/dashboard/new"
         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold text-white no-underline"
         style={{
-          background: 'linear-gradient(135deg, #e53935 0%, #c62828 100%)',
-          boxShadow: '0 4px 12px rgba(229,57,53,0.3)',
+          background: '#142018',
+          boxShadow: 'none',
         }}
       >
         Shorten your first URL

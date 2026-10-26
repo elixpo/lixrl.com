@@ -1,17 +1,18 @@
-'use client';
-
+import { docsMetadata } from '@/lib/docs-sections';
 import Link from 'next/link';
 
-const H1 = 'text-[2.1rem] md:text-[2.4rem] font-extrabold tracking-tight text-white mb-4 leading-tight';
+const H1 = 'doc-h1';
 const LEDE = 'text-white/70 text-base md:text-[1.05rem] leading-relaxed mb-8';
-const H2 = 'text-[1.4rem] font-bold text-white tracking-tight mt-12 mb-3';
-const P = 'text-white/70 text-[0.96rem] leading-relaxed mb-4';
+const H2 = 'doc-h2';
+const P = 'doc-p';
 const PRE = 'p-4 rounded-xl text-[0.85rem] leading-relaxed overflow-x-auto mb-6 font-mono';
 const PRE_STYLE = {
-  background: 'rgba(0,0,0,0.45)',
-  border: '1px solid rgba(0,0,0,0.08)',
-  color: '#e8e8ed',
+  background: 'rgba(20,32,24,0.45)',
+  border: '1px solid rgba(20,32,24,0.08)',
+  color: '#d7dbd6',
 };
+
+export const metadata = docsMetadata('quickstart');
 
 export default function QuickstartPage() {
   return (
@@ -111,8 +112,8 @@ export default function QuickstartPage() {
               className="block p-4 rounded-xl no-underline transition-colors"
               style={{
                 background:
-                  'linear-gradient(135deg, rgba(0,0,0,0.05) 0%, rgba(250,250,250,0.92) 100%)',
-                border: '1px solid rgba(0,0,0,0.10)',
+                  'linear-gradient(135deg, rgba(20,32,24,0.05) 0%, rgba(251,251,248,0.92) 100%)',
+                border: '1px solid rgba(20,32,24,0.10)',
               }}
             >
               <div className="font-semibold text-white mb-1">{label}</div>

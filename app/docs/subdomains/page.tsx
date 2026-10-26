@@ -1,22 +1,25 @@
+import { docsMetadata } from '@/lib/docs-sections';
 import Link from 'next/link';
 
 export const runtime = 'edge';
 
-const H1 = 'text-3xl md:text-4xl font-extrabold tracking-tight text-[#111]';
-const H2 = 'text-2xl font-bold tracking-tight text-[#111] mt-10 mb-4';
-const P = 'text-[#555] leading-7 mb-4';
+const H1 = 'doc-h1';
+const H2 = 'doc-h2';
+const P = 'doc-p';
 const CODE = 'rounded-xl bg-[#171717] p-4 font-mono text-sm text-[#f5f5f4] overflow-x-auto';
+
+export const metadata = docsMetadata('subdomains');
 
 export default function SubdomainsDocsPage() {
   return (
     <div>
       <h1 className={H1}>Branded subdomains</h1>
-      <p className="mt-4 text-lg leading-8 text-[#555]">
+      <p className="mt-4 text-lg leading-8 text-[#5f6962]">
         Publish paid-plan links at a single-level address such as <code>brand.lixrl.com/go</code> while keeping a canonical <code>lixrl.com</code> fallback.
       </p>
 
       <h2 id="availability" className={H2}>Availability and limits</h2>
-      <ul className="ml-5 list-disc space-y-2 text-[#555]">
+      <ul className="ml-5 list-disc space-y-2 text-[#5f6962]">
         <li>Pro includes one branded subdomain.</li>
         <li>Business includes three; Enterprise limits are arranged separately.</li>
         <li>Free accounts cannot claim or activate subdomains.</li>
@@ -24,8 +27,8 @@ export default function SubdomainsDocsPage() {
       </ul>
 
       <h2 id="setup" className={H2}>Setup</h2>
-      <ol className="ml-5 list-decimal space-y-3 text-[#555]">
-        <li>Open <Link href="/dashboard/domains" className="text-[#c62828] underline">Dashboard → Subdomains</Link>.</li>
+      <ol className="ml-5 list-decimal space-y-3 text-[#5f6962]">
+        <li>Open <Link href="/dashboard/domains" className="text-[#2f56b0] underline">Dashboard → Subdomains</Link>.</li>
         <li>Claim an available label. Claims are atomic; another account cannot hold the same live hostname.</li>
         <li>Select <strong>Verify route</strong>. LixRL checks wildcard DNS, TLS, the redirect Worker, and the claim token over HTTPS.</li>
         <li>Make the verified hostname your default or map individual existing links to branded codes.</li>

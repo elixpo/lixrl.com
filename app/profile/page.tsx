@@ -28,7 +28,7 @@ export default async function ProfilePage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-sans font-bold text-text-primary mb-6">Profile</h1>
+      <h1 className="app-title mb-8">Profile</h1>
 
       <div className="grid grid-cols-2 gap-4 mb-6">
         {/* Account */}
@@ -79,7 +79,7 @@ export default async function ProfilePage() {
                 <span>{urlCount?.count || 0} / {urlLimit}</span>
               </div>
               {limits.maxUrls !== -1 && (
-                <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(0,0,0,0.06)' }}>
+                <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(20,32,24,0.06)' }}>
                   <div className="h-full rounded-full bg-accent-main transition-all" style={{ width: `${Math.min(((urlCount?.count || 0) / limits.maxUrls) * 100, 100)}%` }} />
                 </div>
               )}
@@ -89,7 +89,7 @@ export default async function ProfilePage() {
                 <span className="text-text-muted">API Keys</span>
                 <span>{keyCount?.count || 0} / {limits.maxApiKeys}</span>
               </div>
-              <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(0,0,0,0.06)' }}>
+              <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(20,32,24,0.06)' }}>
                 <div className="h-full rounded-full bg-accent-light transition-all" style={{ width: `${Math.min(((keyCount?.count || 0) / limits.maxApiKeys) * 100, 100)}%` }} />
               </div>
             </div>
@@ -110,7 +110,7 @@ export default async function ProfilePage() {
               <div className="text-sm font-medium">Default redirect type</div>
               <div className="text-xs text-text-muted mt-0.5">HTTP 302 temporary redirect for all short URLs</div>
             </div>
-            <span className="text-xs text-text-disabled font-mono px-2.5 py-1 rounded-lg" style={{ background: 'rgba(0,0,0,0.06)' }}>302</span>
+            <span className="text-xs text-text-disabled font-mono px-2.5 py-1 rounded-lg" style={{ background: 'rgba(20,32,24,0.06)' }}>302</span>
           </div>
           <div className="flex items-center justify-between py-3 border-b border-border-light">
             <div>
@@ -175,7 +175,7 @@ export default async function ProfilePage() {
           style={{ borderColor: 'rgba(239, 68, 68, 0.18)' }}
         >
           <div className="min-w-0 pr-3">
-            <h2 className="text-sm font-semibold text-[#f87171]">
+            <h2 className="text-sm font-semibold text-[#b42318]">
               Delete account
             </h2>
             <p className="text-xs text-text-muted mt-0.5 leading-relaxed">
@@ -194,7 +194,7 @@ export default async function ProfilePage() {
             className="btn-glass text-xs no-underline whitespace-nowrap inline-flex items-center gap-1.5"
             style={{
               borderColor: 'rgba(239, 68, 68, 0.4)',
-              color: '#f87171',
+              color: '#b42318',
             }}
           >
             Open Elixpo Accounts

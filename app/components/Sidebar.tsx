@@ -168,34 +168,36 @@ export default function Sidebar({ user }: { user: User }) {
     <Link
       href={href}
       title={label}
-      className={`group flex items-center gap-2 h-9 px-2 lg:px-3 rounded-lg transition-all duration-200 no-underline ${
+      aria-label={label}
+      aria-current={isActive(href) ? 'page' : undefined}
+      className={`group flex items-center gap-2 h-10 min-w-10 justify-center px-2.5 lg:px-3.5 rounded-full transition-colors duration-200 no-underline ${
         isActive(href)
-          ? 'text-accent-main bg-[rgba(229,57,53,0.08)]'
-          : 'text-text-secondary hover:text-text-primary hover:bg-bg-glass'
+          ? 'text-ink bg-paper-deep font-semibold'
+          : 'text-[#3d4842] hover:text-ink hover:bg-paper-deep'
       }`}
     >
-      <span className={isActive(href) ? 'opacity-100' : 'opacity-60 group-hover:opacity-100'}>
+      <span aria-hidden="true" className={isActive(href) ? 'text-accent-deep' : 'opacity-70 group-hover:opacity-100'}>
         {icon}
       </span>
-      <span className="hidden lg:inline text-sm font-medium">{label}</span>
+      <span className="hidden lg:inline text-[0.8rem] font-semibold">{label}</span>
     </Link>
   );
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-4 sm:px-6 h-14 border-b border-border-light"
-      style={{ background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(20px)' }}
+      className="fixed left-1/2 top-2 z-30 flex h-[60px] w-[min(calc(100%-1rem),1450px)] -translate-x-1/2 items-center justify-between gap-2 rounded-full border border-[rgba(20,32,24,0.14)] bg-[rgba(251,251,248,0.92)] pl-4 pr-2 shadow-header backdrop-blur-[18px] sm:top-3.5 sm:h-[68px] sm:w-[min(calc(100%-2rem),1450px)] sm:pl-5 sm:pr-3"
     >
       {/* Left: Logo */}
-      <Link href="/?noredirect=1" className="flex items-center gap-2 no-underline shrink-0">
-        <Image src="/logo.png" alt="ElixpoURL" width={26} height={26} className="rounded-lg" />
-        <span className="text-base font-sans font-bold text-text-primary hidden sm:inline">
-          <span className="text-accent-main">Elixpo</span>URL
+      <Link href="/?noredirect=1" aria-label="Lixrl home" className="flex items-center gap-3 no-underline shrink-0 text-ink">
+        <Image src="/base_logo.png" alt="" width={32} height={32} className="h-8 w-8 rounded-full object-contain" />
+        <span className="hidden items-baseline gap-1.5 sm:flex">
+          <b className="text-base tracking-tight">Lixrl</b>
+          <small className="text-[0.72rem] text-[#5f6962]">Dashboard</small>
         </span>
       </Link>
 
       {/* Right: Nav + Account dropdown */}
-      <div className="flex items-center gap-0.5 sm:gap-1">
+      <nav aria-label="Dashboard" className="flex items-center gap-0.5 sm:gap-1">
         {/* App nav — icon+text on lg. Pricing intentionally omitted inside the
             dashboard; it's still reachable from the profile menu. */}
         {navItems.map((item) => (
@@ -211,8 +213,12 @@ export default function Sidebar({ user }: { user: User }) {
         {/* Account dropdown */}
         <div className="relative" ref={dropdownRef}>
         <button
+          type="button"
+          aria-label={`Account menu for ${user.display_name}`}
+          aria-haspopup="menu"
+          aria-expanded={accountOpen}
           onClick={() => setAccountOpen(!accountOpen)}
-          className="flex items-center gap-2.5 p-1 lg:pl-1.5 lg:pr-2.5 rounded-lg hover:bg-bg-glass transition-all duration-200 bg-transparent border-none cursor-pointer group"
+          className="flex items-center gap-2.5 p-1 lg:pl-1.5 lg:pr-2.5 rounded-full hover:bg-bg-glass transition-all duration-200 bg-transparent border-none cursor-pointer group"
         >
           <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 border border-border-medium group-hover:border-accent-main/40 transition-colors">
             <img
@@ -235,13 +241,13 @@ export default function Sidebar({ user }: { user: User }) {
         {/* Dropdown */}
         {accountOpen && (
           <div
-            className="absolute right-0 top-full mt-2 w-64 rounded-xl border border-border-light overflow-hidden shadow-xl z-50"
+            className="absolute right-0 top-full mt-3 w-[min(16rem,calc(100vw-2rem))] rounded-[1.2rem] border border-line overflow-hidden shadow-header z-50"
             style={{ background: 'rgba(255,255,255,0.98)', backdropFilter: 'blur(20px)' }}
           >
             {/* Profile card — avatar, identity, current plan */}
             <div
               className="px-4 py-3.5 border-b border-border-light"
-              style={{ background: 'linear-gradient(135deg, rgba(229,57,53,0.08) 0%, #ffffff 100%)' }}
+              style={{ background: '#eef2ff' }}
             >
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 border border-accent-main/30">
@@ -262,9 +268,9 @@ export default function Sidebar({ user }: { user: User }) {
                 <span
                   className="inline-flex items-center px-2 py-0.5 rounded-md text-[0.62rem] font-bold uppercase tracking-wider"
                   style={{
-                    background: 'rgba(229,57,53,0.1)',
-                    color: '#c62828',
-                    border: '1px solid rgba(229,57,53,0.25)',
+                    background: 'rgba(58,101,199,0.1)',
+                    color: '#2f56b0',
+                    border: '1px solid rgba(58,101,199,0.25)',
                   }}
                 >
                   {user.tier}
@@ -279,8 +285,8 @@ export default function Sidebar({ user }: { user: User }) {
                 onClick={() => setAccountOpen(false)}
                 className="flex items-center gap-3 mx-2 my-2 px-3 py-2.5 rounded-lg text-sm font-semibold text-white no-underline"
                 style={{
-                  background: 'linear-gradient(135deg, #e53935 0%, #c62828 100%)',
-                  boxShadow: '0 4px 12px rgba(229,57,53,0.2)',
+                  background: '#142018',
+                  boxShadow: 'none',
                 }}
               >
                 <span className="opacity-90">{Icons.sparkle}</span>
@@ -297,7 +303,7 @@ export default function Sidebar({ user }: { user: User }) {
                   onClick={() => setAccountOpen(false)}
                   className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-all duration-150 no-underline ${
                     isActive(item.href)
-                      ? 'text-accent-main bg-[rgba(229,57,53,0.06)]'
+                      ? 'text-accent-main bg-[rgba(58,101,199,0.06)]'
                       : 'text-text-secondary hover:text-text-primary hover:bg-bg-glass'
                   }`}
                 >
@@ -326,7 +332,7 @@ export default function Sidebar({ user }: { user: User }) {
             <div className="border-t border-border-light py-1.5">
               <button
                 onClick={handleLogout}
-                className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-text-secondary hover:text-[#f87171] hover:bg-bg-glass transition-all duration-150 cursor-pointer bg-transparent border-none text-left"
+                className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-text-secondary hover:text-[#b42318] hover:bg-bg-glass transition-all duration-150 cursor-pointer bg-transparent border-none text-left"
               >
                 <span className="opacity-50">{Icons.logout}</span>
                 Sign Out
@@ -335,7 +341,7 @@ export default function Sidebar({ user }: { user: User }) {
           </div>
         )}
         </div>
-      </div>
+      </nav>
     </header>
   );
 }

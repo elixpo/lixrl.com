@@ -22,7 +22,7 @@ interface Props {
   allowLogo: boolean;
 }
 
-const ACCENT = '#e53935';
+const ACCENT = '#3a65c7';
 
 export default function QrStudio({
   shortUrl,
@@ -70,7 +70,7 @@ export default function QrStudio({
             height: 236,
             padding: 8,
             background: '#ffffff',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(229,57,53,0.18)',
+            boxShadow: '0 8px 24px rgba(20,32,24,0.5), 0 0 0 1px rgba(58,101,199,0.18)',
           }}
         >
           <StyledQr ref={qrRef} options={mainOptions} display={220} filename={filename} onError={setError} />
@@ -94,7 +94,7 @@ export default function QrStudio({
                     onBlur={applyLogo}
                     onKeyDown={(e) => e.key === 'Enter' && applyLogo()}
                     className="flex-1 min-w-0 px-3 py-2 rounded-lg text-sm text-white bg-transparent outline-none"
-                    style={{ border: '1px solid rgba(0,0,0,0.14)' }}
+                    style={{ border: '1px solid rgba(20,32,24,0.14)' }}
                   />
                   {logoUrl && (
                     <button
@@ -105,7 +105,7 @@ export default function QrStudio({
                         setError(null);
                       }}
                       className="px-3 py-2 rounded-lg text-sm text-white/70 cursor-pointer bg-transparent"
-                      style={{ border: '1px solid rgba(0,0,0,0.14)' }}
+                      style={{ border: '1px solid rgba(20,32,24,0.14)' }}
                     >
                       Clear
                     </button>
@@ -120,12 +120,12 @@ export default function QrStudio({
               <Link
                 href="/pricing"
                 className="mt-1.5 flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg no-underline group"
-                style={{ background: 'rgba(229,57,53,0.08)', border: '1px solid rgba(229,57,53,0.25)' }}
+                style={{ background: 'rgba(58,101,199,0.08)', border: '1px solid rgba(58,101,199,0.25)' }}
               >
                 <span className="text-[0.8rem] text-white/75">
                   🔒 Add your own logo with <strong className="text-white">Pro</strong>
                 </span>
-                <span className="text-[0.78rem] font-semibold" style={{ color: '#c62828' }}>
+                <span className="text-[0.78rem] font-semibold" style={{ color: '#2f56b0' }}>
                   Upgrade →
                 </span>
               </Link>
@@ -135,7 +135,7 @@ export default function QrStudio({
           {error && (
             <div
               className="text-xs px-3 py-2 rounded-lg"
-              style={{ background: 'rgba(248,113,113,0.1)', border: '1px solid rgba(248,113,113,0.3)', color: '#fca5a5' }}
+              style={{ background: 'rgba(248,113,113,0.1)', border: '1px solid rgba(248,113,113,0.3)', color: '#b42318' }}
             >
               {error}
             </div>
@@ -146,7 +146,7 @@ export default function QrStudio({
               type="button"
               onClick={download}
               className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white cursor-pointer border-none"
-              style={{ background: 'linear-gradient(135deg, #e53935 0%, #c62828 100%)', boxShadow: '0 4px 14px rgba(229,57,53,0.35)' }}
+              style={{ background: '#142018', boxShadow: 'none' }}
             >
               Download SVG
             </button>
@@ -161,7 +161,7 @@ export default function QrStudio({
             Style
           </div>
           {presetLimit !== -1 && (
-            <Link href="/pricing" className="text-[0.7rem] font-semibold no-underline" style={{ color: '#c62828' }}>
+            <Link href="/pricing" className="text-[0.7rem] font-semibold no-underline" style={{ color: '#2f56b0' }}>
               Unlock all styles →
             </Link>
           )}
@@ -183,8 +183,8 @@ export default function QrStudio({
                 aria-disabled={locked}
                 className="relative flex flex-col items-center gap-1.5 p-2 rounded-xl cursor-pointer transition-all bg-transparent"
                 style={{
-                  border: selected ? `1px solid ${ACCENT}` : '1px solid rgba(0,0,0,0.10)',
-                  background: selected ? 'rgba(229,57,53,0.1)' : 'transparent',
+                  border: selected ? `1px solid ${ACCENT}` : '1px solid rgba(20,32,24,0.10)',
+                  background: selected ? 'rgba(58,101,199,0.1)' : 'transparent',
                 }}
               >
                 <div className="relative" style={{ opacity: locked ? 0.4 : 1 }}>
@@ -200,7 +200,7 @@ export default function QrStudio({
                 </div>
                 <span
                   className="text-[0.62rem] font-medium truncate w-full text-center"
-                  style={{ color: locked ? 'rgba(0,0,0,0.4)' : selected ? '#c62828' : 'rgba(0,0,0,0.6)' }}
+                  style={{ color: locked ? 'rgba(20,32,24,0.4)' : selected ? '#2f56b0' : 'rgba(20,32,24,0.6)' }}
                 >
                   {p.name}
                 </span>

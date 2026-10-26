@@ -1,15 +1,16 @@
-'use client';
-
-const H1 = 'text-[2.1rem] md:text-[2.4rem] font-extrabold tracking-tight text-white mb-4 leading-tight';
+import { docsMetadata } from '@/lib/docs-sections';
+const H1 = 'doc-h1';
 const LEDE = 'text-white/70 text-base md:text-[1.05rem] leading-relaxed mb-8';
-const H2 = 'text-[1.4rem] font-bold text-white tracking-tight mt-12 mb-3';
-const P = 'text-white/70 text-[0.96rem] leading-relaxed mb-4';
+const H2 = 'doc-h2';
+const P = 'doc-p';
 const PRE = 'p-4 rounded-xl text-[0.85rem] leading-relaxed overflow-x-auto mb-6 font-mono';
 const PRE_STYLE = {
-  background: 'rgba(0,0,0,0.45)',
-  border: '1px solid rgba(0,0,0,0.08)',
-  color: '#e8e8ed',
+  background: 'rgba(20,32,24,0.45)',
+  border: '1px solid rgba(20,32,24,0.08)',
+  color: '#d7dbd6',
 };
+
+export const metadata = docsMetadata('analytics');
 
 export default function AnalyticsPage() {
   return (
@@ -58,7 +59,7 @@ export default function AnalyticsPage() {
           ['default', '7 days when the days parameter is omitted'],
         ].map(([k, v]) => (
           <li key={k} className="text-white/70 text-[0.96rem] flex gap-2.5">
-            <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#e53935]" />
+            <span className="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#3a65c7]" />
             <code className="font-mono text-white">{k}</code> — {v}
           </li>
         ))}

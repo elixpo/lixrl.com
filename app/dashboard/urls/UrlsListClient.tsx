@@ -81,8 +81,8 @@ export default function UrlsListClient({
         <div
           className="flex items-center justify-between gap-3 mb-3 p-3 rounded-lg"
           style={{
-            background: 'rgba(229,57,53,0.08)',
-            border: '1px solid rgba(229,57,53,0.3)',
+            background: 'rgba(58,101,199,0.08)',
+            border: '1px solid rgba(58,101,199,0.3)',
           }}
         >
           <div className="text-sm text-white/85">
@@ -106,7 +106,7 @@ export default function UrlsListClient({
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-white transition-all"
               style={{
                 background:
-                  'linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)',
+                  '#b42318',
                 boxShadow: '0 4px 14px rgba(239,68,68,0.35)',
               }}
             >
@@ -124,7 +124,7 @@ export default function UrlsListClient({
       <div className="overflow-x-auto">
         <table className="w-full min-w-[760px]">
           <thead>
-            <tr style={{ borderBottom: '1px solid rgba(0,0,0,0.10)' }}>
+            <tr style={{ borderBottom: '1px solid rgba(20,32,24,0.10)' }}>
               <th className="w-8 pb-3">
                 <input
                   type="checkbox"
@@ -132,7 +132,7 @@ export default function UrlsListClient({
                   onChange={toggleAll}
                   aria-label="Select all"
                   className="cursor-pointer"
-                  style={{ accentColor: '#e53935' }}
+                  style={{ accentColor: '#3a65c7' }}
                 />
               </th>
               <th className={COL_HEAD}>Code</th>
@@ -149,9 +149,9 @@ export default function UrlsListClient({
                 <tr
                   key={u.short_code}
                   style={{
-                    borderBottom: '1px solid rgba(0,0,0,0.05)',
+                    borderBottom: '1px solid rgba(20,32,24,0.05)',
                     background: selected.has(u.short_code)
-                      ? 'rgba(229,57,53,0.04)'
+                      ? 'rgba(58,101,199,0.04)'
                       : 'transparent',
                   }}
                 >
@@ -162,13 +162,13 @@ export default function UrlsListClient({
                       onChange={() => toggleOne(u.short_code)}
                       aria-label={`Select ${u.short_code}`}
                       className="cursor-pointer"
-                      style={{ accentColor: '#e53935' }}
+                      style={{ accentColor: '#3a65c7' }}
                     />
                   </td>
                   <td className="py-3">
                     <Link
                       href={`/dashboard/urls/${u.short_code}`}
-                      className="text-[#c62828] text-sm font-mono font-semibold no-underline hover:underline"
+                      className="text-[#2f56b0] text-sm font-mono font-semibold no-underline hover:underline"
                     >
                       /{u.short_code}
                     </Link>
@@ -189,12 +189,12 @@ export default function UrlsListClient({
                         u.is_active
                           ? {
                               background: 'rgba(34,197,94,0.1)',
-                              color: '#86efac',
+                              color: '#0b623c',
                               border: '1px solid rgba(34,197,94,0.3)',
                             }
                           : {
                               background: 'rgba(239,68,68,0.1)',
-                              color: '#f87171',
+                              color: '#b42318',
                               border: '1px solid rgba(239,68,68,0.3)',
                             }
                       }
@@ -237,8 +237,8 @@ export default function UrlsListClient({
               }page=${page - 1}`}
               className="px-3 py-1.5 rounded-lg text-xs no-underline transition-colors text-white/75"
               style={{
-                background: 'rgba(0,0,0,0.05)',
-                border: '1px solid rgba(0,0,0,0.12)',
+                background: 'rgba(20,32,24,0.05)',
+                border: '1px solid rgba(20,32,24,0.12)',
               }}
             >
               ← Prev
@@ -254,8 +254,8 @@ export default function UrlsListClient({
               }page=${page + 1}`}
               className="px-3 py-1.5 rounded-lg text-xs no-underline transition-colors text-white/75"
               style={{
-                background: 'rgba(0,0,0,0.05)',
-                border: '1px solid rgba(0,0,0,0.12)',
+                background: 'rgba(20,32,24,0.05)',
+                border: '1px solid rgba(20,32,24,0.12)',
               }}
             >
               Next →

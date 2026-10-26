@@ -43,15 +43,15 @@ export default function QrCard({ shortUrl, presetLimit, allowLogo }: Props) {
 
   return (
     <div
-      className="p-6 rounded-2xl"
+      className="p-6 rounded-[1.4rem]"
       style={{
         width: '100%',
         maxWidth: '320px',
         boxSizing: 'border-box',
         marginInline: 'auto',
         background:
-          'linear-gradient(135deg, rgba(255,255,255,0.96) 0%, rgba(250,250,250,0.92) 100%)',
-        border: '1px solid rgba(0,0,0,0.10)',
+          '#ffffff',
+        border: '1px solid rgba(20,32,24,0.10)',
         backdropFilter: 'blur(20px)',
       }}
     >
@@ -62,9 +62,9 @@ export default function QrCard({ shortUrl, presetLimit, allowLogo }: Props) {
         <span
           className="text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full"
           style={{
-            background: 'rgba(229,57,53,0.12)',
-            color: '#c62828',
-            border: '1px solid rgba(229,57,53,0.3)',
+            background: 'rgba(58,101,199,0.12)',
+            color: '#2f56b0',
+            border: '1px solid rgba(58,101,199,0.3)',
           }}
         >
           Styled
@@ -81,7 +81,7 @@ export default function QrCard({ shortUrl, presetLimit, allowLogo }: Props) {
             padding: 8,
             boxSizing: 'border-box',
             background: '#ffffff',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(229,57,53,0.18)',
+            boxShadow: '0 8px 24px rgba(20,32,24,0.5), 0 0 0 1px rgba(58,101,199,0.18)',
           }}
         >
           <StyledQr
@@ -96,7 +96,7 @@ export default function QrCard({ shortUrl, presetLimit, allowLogo }: Props) {
         {error && (
           <div
             className="text-xs text-center px-3 py-2 rounded-lg w-full"
-            style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.25)', color: '#f87171' }}
+            style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.25)', color: '#b42318' }}
           >
             {error}
           </div>
@@ -108,8 +108,8 @@ export default function QrCard({ shortUrl, presetLimit, allowLogo }: Props) {
             onClick={() => qrRef.current?.download('svg')}
             className="inline-flex items-center justify-center gap-2 w-full px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all cursor-pointer border-none"
             style={{
-              background: 'linear-gradient(135deg, #e53935 0%, #c62828 100%)',
-              boxShadow: '0 4px 14px rgba(229,57,53,0.35)',
+              background: '#142018',
+              boxShadow: 'none',
             }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -124,7 +124,7 @@ export default function QrCard({ shortUrl, presetLimit, allowLogo }: Props) {
             type="button"
             onClick={() => qrRef.current?.download('png')}
             className="inline-flex items-center justify-center gap-2 w-full px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer"
-            style={{ background: '#fff', color: '#c62828', border: '1px solid rgba(229,57,53,0.35)' }}
+            style={{ background: '#fff', color: '#2f56b0', border: '1px solid rgba(58,101,199,0.35)' }}
           >
             Download PNG
           </button>
@@ -135,8 +135,8 @@ export default function QrCard({ shortUrl, presetLimit, allowLogo }: Props) {
             className="inline-flex items-center justify-center gap-2 w-full px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer"
             style={{
               background: 'rgba(255,255,255,0.98)',
-              border: '1px solid rgba(0,0,0,0.12)',
-              color: 'rgba(0,0,0,0.85)',
+              border: '1px solid rgba(20,32,24,0.12)',
+              color: 'rgba(20,32,24,0.85)',
             }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

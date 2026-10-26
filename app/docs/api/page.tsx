@@ -1,33 +1,31 @@
+import { docsMetadata } from '@/lib/docs-sections';
 import Link from 'next/link';
 import type { CSSProperties, ReactNode } from 'react';
 
-const H1 =
-  'text-[2.1rem] md:text-[2.4rem] font-extrabold tracking-tight text-[#111] mb-4 leading-tight';
+const H1 = 'doc-h1';
 const LEDE =
-  'text-[#555] text-base md:text-[1.05rem] leading-relaxed mb-8 max-w-4xl';
-const H2 =
-  'text-[1.4rem] font-bold text-[#111] tracking-tight mt-12 mb-3 scroll-mt-24';
-const H3 =
-  'text-[1.05rem] font-bold text-[#222] tracking-tight mt-7 mb-2 scroll-mt-24';
-const P = 'text-[#555] text-[0.96rem] leading-relaxed mb-4';
+  'text-[#5f6962] text-base md:text-[1.05rem] leading-relaxed mb-8 max-w-4xl';
+const H2 = 'doc-h2 scroll-mt-24';
+const H3 = 'doc-h3 scroll-mt-24';
+const P = 'doc-p';
 const INLINE_CODE =
-  'font-mono text-[0.88em] text-[#9f211e] bg-[#fff1f0] border border-[#ffd4d1] rounded px-1.5 py-0.5';
+  'font-mono text-[0.88em] text-[#2f56b0] bg-[#eef2ff] border border-[#c9d6f5] rounded px-1.5 py-0.5';
 const PRE =
   'p-4 md:p-5 rounded-xl text-[0.84rem] leading-[1.65] overflow-x-auto mb-5 font-mono';
 const PRE_STYLE: CSSProperties = {
   background: '#171717',
-  border: '1px solid #2f2f2f',
+  border: '1px solid #24372b',
   color: '#f5f5f4',
   boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
 };
 const CALLOUT_STYLE: CSSProperties = {
-  background: '#fff8f7',
-  border: '1px solid #ffd4d1',
+  background: '#eef2ff',
+  border: '1px solid #c9d6f5',
 };
 
 const METHOD_STYLE: Record<string, CSSProperties> = {
   POST: {
-    background: '#fff1f0',
+    background: '#eef2ff',
     color: '#b42318',
     border: '1px solid #ffc9c5',
   },
@@ -67,7 +65,7 @@ function CodeBlock({ children, label }: { children: string; label?: string }) {
   return (
     <div className="mb-5">
       {label && (
-        <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-[#777]">
+        <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-[#5f6962]">
           {label}
         </div>
       )}
@@ -84,9 +82,9 @@ function FieldTable({
   rows: Array<[string, string, string, ReactNode]>;
 }) {
   return (
-    <div className="rounded-xl overflow-x-auto mb-6 border border-[#e2e2e2]">
+    <div className="rounded-xl overflow-x-auto mb-6 border border-[#d7dbd6]">
       <table className="w-full min-w-[620px] text-sm">
-        <thead className="bg-[#f7f7f6] text-[#444]">
+        <thead className="bg-[#f5f6f2] text-[#3d4842]">
           <tr>
             <th className="text-left px-4 py-2.5 font-semibold">Field</th>
             <th className="text-left px-4 py-2.5 font-semibold">Type</th>
@@ -96,9 +94,9 @@ function FieldTable({
         </thead>
         <tbody>
           {rows.map(([field, type, required, description]) => (
-            <tr key={field} className="border-t border-[#ececec] text-[#555]">
-              <td className="px-4 py-3 font-mono text-[#9f211e]">{field}</td>
-              <td className="px-4 py-3 font-mono text-[#333]">{type}</td>
+            <tr key={field} className="border-t border-[#e3e6e1] text-[#5f6962]">
+              <td className="px-4 py-3 font-mono text-[#2f56b0]">{field}</td>
+              <td className="px-4 py-3 font-mono text-[#2b3830]">{type}</td>
               <td className="px-4 py-3">{required}</td>
               <td className="px-4 py-3 leading-relaxed">{description}</td>
             </tr>
@@ -120,14 +118,16 @@ function Endpoint({
 }) {
   return (
     <div className="mb-5">
-      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-[#e2e2e2] bg-[#fafafa] px-4 py-3">
+      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-[#d7dbd6] bg-[#f5f6f2] px-4 py-3">
         <MethodBadge method={method} />
-        <code className="font-mono text-[0.92rem] text-[#222]">{path}</code>
+        <code className="font-mono text-[0.92rem] text-[#1d2b22]">{path}</code>
       </div>
       {children}
     </div>
   );
 }
+
+export const metadata = docsMetadata('api');
 
 export default function ApiPage() {
   return (
@@ -146,11 +146,11 @@ export default function ApiPage() {
           ['Content type', 'application/json'],
           ['Authentication', 'Bearer API key'],
         ].map(([label, value]) => (
-          <div key={label} className="rounded-xl border border-[#e2e2e2] bg-[#fafafa] p-4">
-            <div className="text-[11px] font-bold uppercase tracking-wider text-[#777] mb-1">
+          <div key={label} className="rounded-xl border border-[#d7dbd6] bg-[#f5f6f2] p-4">
+            <div className="text-[11px] font-bold uppercase tracking-wider text-[#5f6962] mb-1">
               {label}
             </div>
-            <div className="font-mono text-[0.82rem] text-[#222] break-all">
+            <div className="font-mono text-[0.82rem] text-[#1d2b22] break-all">
               {value}
             </div>
           </div>
@@ -169,7 +169,7 @@ export default function ApiPage() {
       <CodeBlock label="Request header">
         Authorization: Bearer elu_YOUR_API_KEY
       </CodeBlock>
-      <div className="rounded-xl p-4 text-sm text-[#555] leading-relaxed" style={CALLOUT_STYLE}>
+      <div className="rounded-xl p-4 text-sm text-[#5f6962] leading-relaxed" style={CALLOUT_STYLE}>
         The guest endpoint does not accept an API key. It is protected by a
         same-origin browser check, risk scoring, and a 24-hour D1 quota, so it
         is not a replacement for the authenticated integration API.
@@ -329,16 +329,16 @@ export default function ApiPage() {
 }`}</CodeBlock>
 
       <h2 id="status-codes" className={H2}>Status codes and retries</h2>
-      <div className="rounded-xl overflow-x-auto mb-6 border border-[#e2e2e2]">
+      <div className="rounded-xl overflow-x-auto mb-6 border border-[#d7dbd6]">
         <table className="w-full min-w-[560px] text-sm">
-          <thead className="bg-[#f7f7f6] text-[#444]">
+          <thead className="bg-[#f5f6f2] text-[#3d4842]">
             <tr>
               <th className="text-left px-4 py-2.5">Status</th>
               <th className="text-left px-4 py-2.5">Meaning</th>
               <th className="text-left px-4 py-2.5">Action</th>
             </tr>
           </thead>
-          <tbody className="text-[#555]">
+          <tbody className="text-[#5f6962]">
             {[
               ['400', 'Malformed input or unsupported field value.', 'Correct the request before retrying.'],
               ['401', 'Missing, invalid, expired, or revoked credentials.', 'Replace the API key.'],
@@ -349,8 +349,8 @@ export default function ApiPage() {
               ['429', 'Rate or guest quota exceeded.', 'Wait for Retry-After before retrying.'],
               ['500/503', 'Transient service or configuration failure.', 'Retry with capped exponential backoff.'],
             ].map(([status, meaning, action]) => (
-              <tr key={status} className="border-t border-[#ececec]">
-                <td className="px-4 py-3 font-mono font-semibold text-[#222]">{status}</td>
+              <tr key={status} className="border-t border-[#e3e6e1]">
+                <td className="px-4 py-3 font-mono font-semibold text-[#1d2b22]">{status}</td>
                 <td className="px-4 py-3">{meaning}</td>
                 <td className="px-4 py-3">{action}</td>
               </tr>

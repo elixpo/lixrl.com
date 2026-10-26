@@ -25,8 +25,8 @@ const ABS_MAX_DAYS = 90;
 
 const CARD_STYLE = {
   background:
-    'linear-gradient(135deg, rgba(255,255,255,0.96) 0%, rgba(250,250,250,0.92) 100%)',
-  border: '1px solid rgba(0,0,0,0.10)',
+    '#ffffff',
+  border: '1px solid rgba(20,32,24,0.10)',
   backdropFilter: 'blur(20px)',
 } as const;
 
@@ -77,7 +77,7 @@ export default async function UrlDetailPage({
 
   if (!url) {
     return (
-      <div className="rounded-2xl p-8 text-center" style={CARD_STYLE}>
+      <div className="rounded-[1.4rem] p-8 text-center" style={CARD_STYLE}>
         <p className="text-white/45">URL not found</p>
       </div>
     );
@@ -153,7 +153,7 @@ export default async function UrlDetailPage({
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
         <div className="min-w-0">
-          <h1 className="text-2xl font-bold text-white tracking-tight">
+          <h1 className="app-title font-mono">
             /{code}
           </h1>
           <p className="text-sm text-white/55 mt-1 max-w-lg truncate">
@@ -168,7 +168,7 @@ export default async function UrlDetailPage({
 
       {/* Stat row */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-        <div className="p-5 rounded-2xl" style={CARD_STYLE}>
+        <div className="p-5 rounded-[1.4rem]" style={CARD_STYLE}>
           <div className="text-[0.7rem] text-white/45 uppercase tracking-wider mb-2">
             Total clicks
           </div>
@@ -176,7 +176,7 @@ export default async function UrlDetailPage({
             {url.clicks}
           </div>
         </div>
-        <div className="p-5 rounded-2xl" style={CARD_STYLE}>
+        <div className="p-5 rounded-[1.4rem]" style={CARD_STYLE}>
           <div className="text-[0.7rem] text-white/45 uppercase tracking-wider mb-2">
             Status
           </div>
@@ -186,12 +186,12 @@ export default async function UrlDetailPage({
               url.is_active
                 ? {
                     background: 'rgba(34,197,94,0.1)',
-                    color: '#86efac',
+                    color: '#0b623c',
                     border: '1px solid rgba(34,197,94,0.3)',
                   }
                 : {
                     background: 'rgba(239,68,68,0.1)',
-                    color: '#f87171',
+                    color: '#b42318',
                     border: '1px solid rgba(239,68,68,0.3)',
                   }
             }
@@ -199,7 +199,7 @@ export default async function UrlDetailPage({
             {url.is_active ? 'Active' : 'Inactive'}
           </span>
         </div>
-        <div className="p-5 rounded-2xl" style={CARD_STYLE}>
+        <div className="p-5 rounded-[1.4rem]" style={CARD_STYLE}>
           <div className="text-[0.7rem] text-white/45 uppercase tracking-wider mb-2">
             Created
           </div>
@@ -214,7 +214,7 @@ export default async function UrlDetailPage({
       </div>
 
       {/* Main click chart */}
-      <div className="p-6 rounded-2xl mb-6" style={CARD_STYLE}>
+      <div className="p-6 rounded-[1.4rem] mb-6" style={CARD_STYLE}>
         <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
           <div>
             <div className="text-[11px] font-bold tracking-[0.1em] uppercase text-white/45 mb-0.5">
@@ -224,7 +224,7 @@ export default async function UrlDetailPage({
               Last <span className="text-white font-semibold">{days}</span> day
               {days === 1 ? '' : 's'}
               {isFree && (
-                <span className="ml-2 text-[#c62828]">
+                <span className="ml-2 text-[#2f56b0]">
                   · Free preview
                 </span>
               )}
@@ -241,21 +241,21 @@ export default async function UrlDetailPage({
                 'inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-lg font-medium no-underline transition-colors';
               const style = active
                 ? {
-                    background: 'rgba(229,57,53,0.12)',
-                    color: '#c62828',
-                    border: '1px solid rgba(229,57,53,0.4)',
+                    background: 'rgba(58,101,199,0.12)',
+                    color: '#2f56b0',
+                    border: '1px solid rgba(58,101,199,0.4)',
                   }
                 : locked
                   ? {
-                      background: 'rgba(0,0,0,0.03)',
-                      color: 'rgba(0,0,0,0.35)',
-                      border: '1px solid rgba(0,0,0,0.08)',
+                      background: 'rgba(20,32,24,0.03)',
+                      color: 'rgba(20,32,24,0.35)',
+                      border: '1px solid rgba(20,32,24,0.08)',
                       cursor: 'not-allowed',
                     }
                   : {
                       background: 'transparent',
-                      color: 'rgba(0,0,0,0.55)',
-                      border: '1px solid rgba(0,0,0,0.10)',
+                      color: 'rgba(20,32,24,0.55)',
+                      border: '1px solid rgba(20,32,24,0.10)',
                     };
               if (locked) {
                 return (
@@ -303,8 +303,8 @@ export default async function UrlDetailPage({
             className="mt-5 p-3 rounded-lg flex items-center justify-between gap-3 text-sm"
             style={{
               background:
-                'linear-gradient(135deg, rgba(229,57,53,0.1) 0%, rgba(95,182,255,0.04) 100%)',
-              border: '1px solid rgba(229,57,53,0.25)',
+                '#eef2ff',
+              border: '1px solid rgba(58,101,199,0.25)',
             }}
           >
             <span className="text-white/75">
@@ -315,8 +315,8 @@ export default async function UrlDetailPage({
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-white no-underline whitespace-nowrap"
               style={{
                 background:
-                  'linear-gradient(135deg, #e53935 0%, #c62828 100%)',
-                boxShadow: '0 4px 12px rgba(229,57,53,0.35)',
+                  '#142018',
+                boxShadow: 'none',
               }}
             >
               Upgrade
@@ -341,7 +341,7 @@ export default async function UrlDetailPage({
       {/* Export click data (left) + QR (right) */}
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-4 mb-6">
         <div
-          className="rounded-2xl p-6 relative overflow-hidden"
+          className="rounded-[1.4rem] p-6 relative overflow-hidden"
           style={CARD_STYLE}
         >
           <div className="flex items-center justify-between mb-4">
@@ -353,14 +353,14 @@ export default async function UrlDetailPage({
               style={
                 limits.analytics
                   ? {
-                      background: 'rgba(229,57,53,0.12)',
-                      color: '#c62828',
-                      border: '1px solid rgba(229,57,53,0.3)',
+                      background: 'rgba(58,101,199,0.12)',
+                      color: '#2f56b0',
+                      border: '1px solid rgba(58,101,199,0.3)',
                     }
                   : {
-                      background: 'rgba(0,0,0,0.08)',
-                      color: 'rgba(0,0,0,0.7)',
-                      border: '1px solid rgba(0,0,0,0.15)',
+                      background: 'rgba(20,32,24,0.08)',
+                      color: 'rgba(20,32,24,0.7)',
+                      border: '1px solid rgba(20,32,24,0.15)',
                     }
               }
             >
@@ -372,8 +372,8 @@ export default async function UrlDetailPage({
           <div
             className="rounded-xl p-3 mb-4"
             style={{
-              background: 'rgba(0,0,0,0.25)',
-              border: '1px solid rgba(0,0,0,0.06)',
+              background: 'rgba(20,32,24,0.25)',
+              border: '1px solid rgba(20,32,24,0.06)',
             }}
           >
             <ClicksChart data={timeline} height={110} compact />
@@ -385,7 +385,7 @@ export default async function UrlDetailPage({
               className="px-3 py-2.5 rounded-lg"
               style={{
                 background: 'rgba(255,255,255,0.98)',
-                border: '1px solid rgba(0,0,0,0.10)',
+                border: '1px solid rgba(20,32,24,0.10)',
               }}
             >
               <div className="text-[0.62rem] uppercase tracking-wider text-white/40 mb-0.5">
@@ -399,7 +399,7 @@ export default async function UrlDetailPage({
               className="px-3 py-2.5 rounded-lg"
               style={{
                 background: 'rgba(255,255,255,0.98)',
-                border: '1px solid rgba(0,0,0,0.10)',
+                border: '1px solid rgba(20,32,24,0.10)',
               }}
             >
               <div className="text-[0.62rem] uppercase tracking-wider text-white/40 mb-0.5">
@@ -413,7 +413,7 @@ export default async function UrlDetailPage({
               className="px-3 py-2.5 rounded-lg"
               style={{
                 background: 'rgba(255,255,255,0.98)',
-                border: '1px solid rgba(0,0,0,0.10)',
+                border: '1px solid rgba(20,32,24,0.10)',
               }}
             >
               <div className="text-[0.62rem] uppercase tracking-wider text-white/40 mb-0.5">
@@ -441,13 +441,13 @@ export default async function UrlDetailPage({
                 rows > 0
                   ? {
                       background:
-                        'linear-gradient(135deg, #e53935 0%, #c62828 100%)',
-                      boxShadow: '0 4px 14px rgba(229,57,53,0.35)',
+                        '#142018',
+                      boxShadow: 'none',
                     }
                   : {
-                      background: 'rgba(0,0,0,0.05)',
-                      border: '1px solid rgba(0,0,0,0.10)',
-                      color: 'rgba(0,0,0,0.4)',
+                      background: 'rgba(20,32,24,0.05)',
+                      border: '1px solid rgba(20,32,24,0.10)',
+                      color: 'rgba(20,32,24,0.4)',
                     }
               }
               aria-disabled={rows === 0}
@@ -482,8 +482,8 @@ export default async function UrlDetailPage({
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-white no-underline whitespace-nowrap"
                 style={{
                   background:
-                    'linear-gradient(135deg, #e53935 0%, #c62828 100%)',
-                  boxShadow: '0 4px 12px rgba(229,57,53,0.35)',
+                    '#142018',
+                  boxShadow: 'none',
                 }}
               >
                 Unlock
@@ -519,7 +519,7 @@ export default async function UrlDetailPage({
             { title: 'Browsers', rows: breakdowns.browsers, key: 'browser' as const },
             { title: 'Devices', rows: breakdowns.devices, key: 'device' as const },
           ].map((panel) => (
-            <div key={panel.title} className="p-5 rounded-2xl" style={CARD_STYLE}>
+            <div key={panel.title} className="p-5 rounded-[1.4rem]" style={CARD_STYLE}>
               <div className="text-[11px] font-bold tracking-[0.1em] uppercase text-white/45 mb-3">
                 {panel.title}
               </div>
@@ -550,11 +550,11 @@ export default async function UrlDetailPage({
         </div>
       ) : (
         <div
-          className="p-6 rounded-2xl text-center"
+          className="p-6 rounded-[1.4rem] text-center"
           style={{
             background:
-              'linear-gradient(135deg, rgba(229,57,53,0.1) 0%, rgba(95,182,255,0.04) 100%)',
-            border: '1px solid rgba(229,57,53,0.25)',
+              '#eef2ff',
+            border: '1px solid rgba(58,101,199,0.25)',
           }}
         >
           <p className="text-white/65 mb-3">
@@ -565,8 +565,8 @@ export default async function UrlDetailPage({
             href="/pricing"
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold text-white no-underline"
             style={{
-              background: 'linear-gradient(135deg, #e53935 0%, #c62828 100%)',
-              boxShadow: '0 4px 14px rgba(229,57,53,0.35)',
+              background: '#142018',
+              boxShadow: 'none',
             }}
           >
             See plans
