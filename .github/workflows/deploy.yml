@@ -227,6 +227,11 @@ jobs:
       project-name: elixpourl
       build-command: npm run pages:build
       output-directory: .vercel/output/static
+      # The committed .env is SOPS-encrypted; without these, Next inlined its ciphertext
+      # (ENC[...]) into the page. Public values only, from repository variables.
+      build-env: |
+        NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=${{ vars.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }}
+        NEXT_PUBLIC_ELIXPO_CLIENT_ID=${{ vars.NEXT_PUBLIC_ELIXPO_CLIENT_ID }}
       branch: main
       environment: production
       # Migrations run between build and deploy, only when workers/migrations/
